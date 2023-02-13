@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Child.hpp                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 08:54:03 by akharraz          #+#    #+#             */
-/*   Updated: 2022/12/09 10:01:38 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/13 03:18:08 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CHILD_HPP
-# define CHILD_HPP
+#include "../include/ray.h"
 
-class Child
+void    print_tuple(t_tuple sum)
 {
-	private:
-		int age;
-	public:
-		void	set_child();
-		void	get_child();
-};
+    printf("x -> %f, y -> %f, z -> %f, w -> %f", sum.x, sum.y, sum.z, sum.w);
+}
 
-# endif // CHILD_HPP
+int main(void)
+{
+    t_tuple a;
+    t_tuple b;
+    
+    a.x = 12; a.y = 41; a.z = 32; a.w = 0;
+    b.x = -1; b.y = -2; b.z = -3; b.w = 0;
+
+    printf("%f\n", magnitude(b));
+    t_tuple sum = add_tuples(a, b);
+    print_tuple(sum);
+    return (0);
+}

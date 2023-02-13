@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parent.cpp                                         :+:      :+:    :+:   */
+/*   negating.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 08:52:55 by akharraz          #+#    #+#             */
-/*   Updated: 2022/12/09 10:10:33 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/13 03:19:33 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/13 03:20:51 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Parent.hpp"
+#include "../include/ray.h"
 
-void	Parent::set(int i)
+t_tuple	negating(t_tuple tup)
 {
-	child[i].set_child();
-}
+	t_tuple	neg;
 
-void	Parent::get(int i)
-{
-	child[i].get_child();
+	neg.x = -tup.x;
+	neg.y = -tup.y;
+	neg.z = -tup.z;
+	neg.w = -tup.w;
+	return (neg);
 }

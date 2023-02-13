@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Child.cpp                                          :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 08:59:38 by akharraz          #+#    #+#             */
-/*   Updated: 2022/12/09 10:09:37 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/13 03:12:18 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Parent.hpp"
+#ifndef RAY_H
+#define RAY_H
 
-void    Child::set_child()
-{
-	std::cin >> age;
-}
+# include <stdio.h>
+# include <math.h>
 
-void	Child::get_child()
-{
-	std::cout << age << std::endl;
-}
+# include "tuple.h"
+
+#endif // RAY_H
