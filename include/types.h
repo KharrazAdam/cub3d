@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:17:47 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/13 18:52:34 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/14 09:17:10 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-#define RAY_H
+#ifndef TYPES_H
+#define TYPES_H
 
-# include <stdio.h>
-# include <math.h>
-# include <mlx.h>
+#include "tuple.h"
 
-# include "tuple.h"
-# include "types.h"
+typedef struct s_projectile
+{
+	t_tuple	position;
+	t_tuple	velocity;
+}t_projectile;
 
-#endif // RAY_H
+typedef struct s_environment
+{
+	t_tuple	gravity;
+	t_tuple	wind;
+}t_environment;
+
+typedef struct s_vars
+{
+    void    *mlx;
+    void    *win;
+}t_vars;
+
+
+void	tick(t_projectile* proj, t_environment* env);
+
+#endif // TYPES_H

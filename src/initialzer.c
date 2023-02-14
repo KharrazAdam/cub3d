@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   initialzer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:17:47 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/14 09:11:21 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/14 09:11:38 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-#define RAY_H
+#include "../include/ray.h"
 
-# include <stdio.h>
-# include <math.h>
-# include <mlx.h>
+t_tuple	initialize_tuple(float x, float y, float z, float w)
+{
+	t_tuple	ret;
 
-# include "tuple.h"
-# include "types.h"
-
-#endif // RAY_H
+	ret.x = x;
+	ret.y = y;
+	ret.z = z;
+	ret.w = w;
+    return ret;
+}

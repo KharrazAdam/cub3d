@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   normalization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:17:47 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/13 04:18:41 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/13 04:38:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-#define RAY_H
+#include "../include/ray.h"
 
-# include <stdio.h>
-# include <math.h>
-# include <mlx.h>
+t_tuple nrml(t_tuple tup)
+{
+    t_tuple normal;
 
-# include "tuple.h"
-# include "types.h"
+    float   mag;
 
-#endif // RAY_H
+    mag = magnitude(tup);
+    normal.x = tup.x / mag;
+    normal.y = tup.y / mag;
+    normal.z = tup.z / mag;
+    normal.w = tup.w / mag;
+    return (normal);
+}

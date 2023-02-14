@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   rbg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:17:47 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/14 15:18:59 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/14 15:44:26 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-#define RAY_H
+#include "../include/ray.h"
 
-# include <stdio.h>
-# include <math.h>
-# include <mlx.h>
-
-# include "tuple.h"
-# include "types.h"
-
-#endif // RAY_H
+void	rbg(t_colour *col)
+{
+	col->colour = 0;
+	col->colour += (int)(col->tuple.x * 255) << 16 | (int)(col->tuple.y * 255) << 8 | (int)(col->tuple.z * 255);
+}
