@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 16:38:57 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:00:00 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void    print_tuple(t_tuple sum)
 int main(void)
 {
 	t_vars		vars;
-	t_colour	colour;
+	t_colour	colour1;
+	// t_colour	colour2;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 500, 500, "My awesome work");
 	
-	colour.tuple = initialize_tuple(0, 0.98, 1, 0);
-	rbg(&colour);
+	colour1.tuple = initialize_tuple(1, 0.2, 0.4, 0);
+	rbg(&colour1);
 	float x = 50.457;
 	int y = 50;
 	
@@ -36,7 +37,7 @@ int main(void)
 	{
 		x = 49;
 		while (++x != 450)
-			mlx_pixel_put(vars.mlx, vars.win, x, y, colour.colour);
+			mlx_pixel_put(vars.mlx, vars.win, x, y, colour1.colour);
 		y++;
 	}
 	mlx_loop(vars.mlx);

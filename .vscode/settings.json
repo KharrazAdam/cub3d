@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "tuple.h": "c"
+        "tuple.h": "c",
+        "ray.h": "c"
     }
 }

@@ -6,15 +6,16 @@
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/02/14 15:44:20 by akharraz         ###   ########.fr        #
+#    Updated: 2023/02/14 18:22:02 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RayTracer.out
 
 SRC = src/main.c src/arth_oper.c src/negating.c src/magnitude.c src/product_operation.c\
-		 src/normalization.c src/tick.c src/initialzer.c src/rbg.c
-INCLUDES = include/ray.h include/tuple.h include/types.h
+		src/normalization.c src/tick.c src/initialzer.c src/rbg.c src/scalar_operations.c\
+		src/colours_operations.c
+INCLUDES = include/ray.h include/tuple.h include/types.h 
 OBJ = ${SRC:%.c=%.o}
 
 all: ${NAME}

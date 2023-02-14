@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:46:19 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/13 03:18:30 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:19:04 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_tuple	add_tuples(t_tuple f_addend, t_tuple s_addend)
     return (sum);
 }
 
-t_tuple	Sub_tuples(t_tuple minuend, t_tuple subtrahend)
+t_tuple	Subtracting_tuples(t_tuple minuend, t_tuple subtrahend)
 {
     t_tuple sub;
 
