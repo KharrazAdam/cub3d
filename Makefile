@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/02/17 10:44:11 by akharraz         ###   ########.fr        #
+#    Updated: 2023/02/17 10:59:54 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = RayTracer.out
 
 SRC_TUPLES = src/tuples_arth_oper.c src/tuples_negating.c src/tuples_magnitude.c src/tuples_product_operation.c src/tuples_normalization.c src/tuples_initialzer.c src/tuples_scalar_operations.c
 
-SRC_COLOUR = src/colours_rbg.c src/colours_operations.c
+SRC_COLOUR = src/colours_initializer.c src/colours_operations.c
 
 SRC_CANVAS = src/canvas.c
 

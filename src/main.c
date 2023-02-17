@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/17 10:45:26 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:17:05 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void    print_tuple(t_tuple sum)
 
 int main(void)
 {
-	t_colour	colour1;
-    t_canvas    *can;
+	t_colour	colour1 = colour_initializer(0, 0, 1);
+    t_canvas    can;
 
-
-	colour_rbg(&colour1);
-    can = canvas_initializer(10, 20);
-    // printf("%d\n", can->pix[0][0].rgb);
-    // canvas_print(can);
+    can = canvas_initializer(10, 5);
+    canvas_insert(&can, 0, 1, colour1);
+    canvas_print(can);
+    printf("{%d}\n", canvas_pix(can, 0, 1).rgb);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:17:03 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/17 10:42:17 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:15:29 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct s_canvas
     t_colour    **pix;
 }t_canvas;
 
-t_canvas    *canvas_initializer(int, int);
+t_canvas    canvas_initializer(int, int);
 void    	canvas_print(t_canvas can);
 void        canvas_insert(t_canvas *can, int y, int x, t_colour col);
+t_colour    canvas_pix(t_canvas can, int x, int y);
+
 #endif // CANVAS_H
