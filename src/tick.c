@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 01:41:44 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:15:32 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/16 00:28:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void    tick(t_projectile* proj, t_environment* env)
 {
-	proj->position = add_tuples(proj->position, proj->velocity); //position ← proj.position + proj.velocity
-	proj->velocity = add_tuples(add_tuples(proj->velocity, env->gravity), env->wind);
+	proj->position = tuples_add(proj->position, proj->velocity); //position ← proj.position + proj.velocity
+	proj->velocity = tuples_add(tuples_add(proj->velocity, env->gravity), env->wind);
 	//velocity ← proj.velocity + env.gravity + env.win
 	return ;
 }

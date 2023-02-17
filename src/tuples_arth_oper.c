@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arth_oper.c                                        :+:      :+:    :+:   */
+/*   tuples_arth_oper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:46:19 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 19:19:04 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/16 00:28:29 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ray.h"
 
-t_tuple	add_tuples(t_tuple f_addend, t_tuple s_addend)
+t_tuple	tuples_add(t_tuple f_addend, t_tuple s_addend)
 {
     t_tuple sum;
 
@@ -23,7 +23,7 @@ t_tuple	add_tuples(t_tuple f_addend, t_tuple s_addend)
     return (sum);
 }
 
-t_tuple	Subtracting_tuples(t_tuple minuend, t_tuple subtrahend)
+t_tuple	tuples_Subtracting(t_tuple minuend, t_tuple subtrahend)
 {
     t_tuple sub;
 

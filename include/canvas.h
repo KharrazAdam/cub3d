@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rbg.c                                              :+:      :+:    :+:   */
+/*   canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 15:18:59 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 15:44:26 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/15 20:17:03 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/17 10:42:17 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ray.h"
+#ifndef CANVAS_H
+#define CANVAS_H
 
-void	rbg(t_colour *col)
+#include "ray.h"
+
+typedef struct s_canvas
 {
-	col->colour = 0;
-	col->colour += (int)(col->tuple.x * 255) << 16 | (int)(col->tuple.y * 255) << 8 | (int)(col->tuple.z * 255);
-}
+    int         width;
+    int         height;
+    t_colour    **pix;
+}t_canvas;
+
+t_canvas    *canvas_initializer(int, int);
+void    	canvas_print(t_canvas can);
+void        canvas_insert(t_canvas *can, int y, int x, t_colour col);
+#endif // CANVAS_H

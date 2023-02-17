@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:52:34 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/14 09:17:10 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/16 23:03:57 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ typedef struct s_environment
 	t_tuple	gravity;
 	t_tuple	wind;
 }t_environment;
-
-typedef struct s_vars
-{
-    void    *mlx;
-    void    *win;
-}t_vars;
 
 
 void	tick(t_projectile* proj, t_environment* env);

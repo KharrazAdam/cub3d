@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/17 10:45:26 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/17 00:15:07 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/17 00:22:49 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ray.h"
+#include  "../include/ray.h"
 
-void    print_tuple(t_tuple sum)
+void	ft_putchar_fd(char c, int fd)
 {
-	printf("x -> %f, y -> %f, z -> %f, w -> %f\n", sum.x, sum.y, sum.z, sum.w);
+    write(fd, &c, 1);
 }
 
-int main(void)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	t_colour	colour1;
-    t_canvas    *can;
-
-
-	colour_rbg(&colour1);
-    can = canvas_initializer(10, 20);
-    // printf("%d\n", can->pix[0][0].rgb);
-    // canvas_print(can);
-	return (0);
+	if (nb == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+	}
+	if (nb < 0 && nb != -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		nb = nb * -1 ;
+	}
+	if (nb < 10 && nb >= 0)
+	{
+		ft_putchar_fd(nb + '0', fd);
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putchar_fd(nb % 10 + '0', fd);
+	}
 }
+
