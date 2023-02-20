@@ -6,13 +6,15 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:40:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/17 11:08:09 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/20 05:05:15 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLE_H
 #define TUPLE_H
 
+#include <stdbool.h>
+#include <math.h>
 typedef struct tuple
 {
 	float	x; // red
@@ -24,6 +26,7 @@ typedef struct tuple
 typedef struct s_colour
 {
 	t_tuple tuple;
+	t_tuple values;
 	int     rgb;
 }t_colour;
 
@@ -37,24 +40,26 @@ typedef struct point
 	t_tuple tuple;
 } t_point;
 
+// tuple init
+t_tuple		tuple_initializer(float, float, float, float);
 		/*operations on tuples*/
 // arithmitic operations
-t_tuple	tuples_add(t_tuple, t_tuple);
-t_tuple	tuples_Subtracting(t_tuple, t_tuple);
+t_tuple     tuples_add(t_tuple, t_tuple);
+t_tuple     tuples_Subtracting(t_tuple, t_tuple);
+bool        tuples_equal(t_tuple a, t_tuple b);
 // tuples_negating
-t_tuple	tuples_negating(t_tuple);
+t_tuple     tuples_negating(t_tuple);
 // scalar operations
-t_tuple	scalar_multipli(t_tuple, float);
-t_tuple	scalar_deviding(t_tuple, float);
+t_tuple     scalar_multipli(t_tuple, float);
+t_tuple     scalar_deviding(t_tuple, float);
 // magnitude
-float magnitude(t_tuple);
+float       magnitude(t_tuple);
 // normalization
-t_tuple   nrml(t_tuple);
+t_tuple     nrml(t_tuple);
 // production operations
 float		dot_product(t_tuple, t_tuple);
 t_tuple		cross_product(t_tuple, t_tuple);
-t_tuple		tuple_initializer(float, float, float, float);
-void		print_tuple(t_tuple sum);
+void        tuple_print(t_tuple sum);
 		/*operations on colours*/
 t_colour	colour_initializer(float x, float y, float z);
 t_colour	colours_add(t_colour, t_colour);

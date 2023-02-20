@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:50:51 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/17 11:16:54 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:29:18 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_colour    canvas_pix(t_canvas can, int y, int x)
 {
     return  can.pix[y][x];
 }
-void	canvas_print(t_canvas can)
+void	canvas_print_rgb(t_canvas can)
 {
 	int	x;
 	int	y;
@@ -65,4 +65,3 @@ t_canvas    canvas_initializer(int w, int h)
 	can.pix[y] = NULL;
 	return (can);
 }
- 

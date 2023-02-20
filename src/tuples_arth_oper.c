@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:46:19 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/16 00:28:29 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/19 05:07:17 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ t_tuple	tuples_Subtracting(t_tuple minuend, t_tuple subtrahend)
     sub.z = minuend.z - subtrahend.z;
     sub.w = minuend.w - subtrahend.w;
     return (sub);
+}
+
+bool    tuples_equal(t_tuple a, t_tuple b)
+{
+    if (fabs(a.x - b.x) < EPSILON)
+        return false;
+    else if (fabs(a.y - b.y) < EPSILON)
+        return false;
+    else if (fabs(a.z - b.z) < EPSILON)
+        return false;
+    else if (fabs(a.w - b.w) < EPSILON)
+        return false;
+    return true;
 }

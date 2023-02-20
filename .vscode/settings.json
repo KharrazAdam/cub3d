@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "tuple.h": "c",
-        "ray.h": "c"
+        "ray.h": "c",
+        "stdbool.h": "c",
+        "chrono": "c",
+        "cmath": "c",
+        "complex": "c",
+        "cstdlib": "c"
     }
 }
