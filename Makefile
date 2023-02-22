@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/02/19 21:23:06 by akharraz         ###   ########.fr        #
+#    Updated: 2023/02/20 07:11:51 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ OBJ = ${SRC:%.c=%.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ} ${INCLUDES}
-	cc $(OBJ)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	cc -fsanitize=address $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o : %.c
-	cc -Imlx -c $< -o $@
+	cc -fsanitize=address -Imlx -c $< -o $@
 
 clean:
 	rm -f ${OBJ}
