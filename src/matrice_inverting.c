@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:51:18 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 23:15:46 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:45:21 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,13 @@ float	matrice_det(t_matrice mat)
 
 float	matrice_sub_det(float	fl[3][3])
 { 
-	return ((fl[0][0] * fl[1][1] * fl[2][2]) - (fl[0][0] * fl[1][2] *  fl[2][1]) + (fl[0][1] * fl[1][2] *  fl[2][0]) - (fl[0][1] * fl[1][0] * fl[2][2]) + (fl[0][2] * fl[1][0] * fl[2][1]) - (fl[0][2] * fl[1][1] * fl[2][0]));
+	return (
+	+ (fl[0][0] * fl[1][1] * fl[2][2])
+	- (fl[0][0] * fl[1][2] *  fl[2][1])
+	+ (fl[0][1] * fl[1][2] *  fl[2][0])
+	- (fl[0][1] * fl[1][0] * fl[2][2])
+	+ (fl[0][2] * fl[1][0] * fl[2][1])
+	- (fl[0][2] * fl[1][1] * fl[2][0]));
 }
 
 void	matrice_sub(t_matrice *adj, int i, int j)
@@ -86,7 +92,10 @@ t_matrice	matrice_adjugate(t_matrice mat)
 		j = 0;
 		while (j < 4)
 		{
-			// adj[i][j] = sub_det();
+			matrice_sub(&mat, i, j);
+			adj.mat[i][j] = matrice_sub_det(mat.sub);
+			if ((i + j) % 2)
+				adj.mat[i][j] *= -1;
 			j++;
 		}
 		i++;
@@ -100,5 +109,5 @@ t_matrice	matrice_inverse(t_matrice mat)
 
 	// adjugate of matrice mat
 	adj = matrice_adjugate(mat);
-	return (matrice_scalar_multi(matrice_transpose(mat), 1 / matrice_det(mat)));
+	return (matrice_scalar_multi(matrice_transpose(matrice_adjugate(mat)), 1 / matrice_det(mat)));
 }

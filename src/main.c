@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 23:08:11 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:45:33 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(void)
     printf("---%f---\n", matrice_det(mat));
     matrice_show(mat);
     printf("-----------------------\n");
-    matrice_sub_show(mat);
-    printf("%f\n", matrice_sub_det(mat.sub));
     // matrice_show(matrice_inverse(mat));
+    matrice_show(matrice_inverse(mat));
+    printf("-----------------------\n");
 }

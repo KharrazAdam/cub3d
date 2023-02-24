@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 02:25:25 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 23:05:49 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:39:46 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ float	matrice_sub_det(float	fl[3][3]);
 void    	matrice_sub(t_matrice *adj, int i, int j);
 t_matrice   matrice_adjugate(t_matrice mat);
 t_matrice   matrice_inverse(t_matrice mat);
+// adjugate
+t_matrice	matrice_adjugate(t_matrice mat);
 #endif // MATRICE_H
