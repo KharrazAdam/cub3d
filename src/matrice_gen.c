@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 02:57:40 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/20 06:33:33 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:46:48 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void    tab_init_1(float tab[4][4])
 {
-	tab[0][0] = 1;
-	tab[0][1] = 2;
+	tab[0][0] = -2;
+	tab[0][1] = -8;
 	tab[0][2] = 3;
-	tab[0][3] = 4;
+	tab[0][3] = 5;
+    
+	tab[1][0] = -3;
+	tab[1][1] = 1;
+	tab[1][2] = 7;
+	tab[1][3] = 3;
 
-	tab[1][0] = 2;
-	tab[1][1] = 4;
-	tab[1][2] = 4;
-	tab[1][3] = 2;
-
-	tab[2][0] = 8;
-	tab[2][1] = 6;
-	tab[2][2] = 4;
-	tab[2][3] = 1;
+	tab[2][0] = 1;
+	tab[2][1] = 2;
+	tab[2][2] = -9;
+	tab[2][3] = 6;
  
-	tab[3][0] = 0;
-	tab[3][1] = 0;
-	tab[3][2] = 0;
-	tab[3][3] = 1;
+	tab[3][0] = -6;
+	tab[3][1] = 7;
+	tab[3][2] = 7;
+	tab[3][3] = -9;
 }
 
 bool    matrice_equal(t_matrice a, t_matrice b)
@@ -78,6 +78,7 @@ t_matrice   matrice_init(float grp[4][4])
 	return (ret);
 }
 
+
 void	matrice_show(t_matrice show)
 {
 	int	y;
@@ -119,6 +120,7 @@ t_matrice   matrice_identity(void)
     }
     return (ret); 
 }
+
 t_matrice   matrice_transpose(t_matrice obj)
 {
     t_matrice   trans;

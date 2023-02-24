@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:21:34 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/20 05:30:36 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:52:57 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ t_tuple matrice_tuple_multiplication(t_matrice mat, t_tuple tup)
 	ret.z = (mat.mat[2][0] * tup.x) + (mat.mat[2][1] * tup.y) + (mat.mat[2][2] * tup.z) + (mat.mat[2][3] * tup.w);
 	ret.w = (mat.mat[3][0] * tup.x) + (mat.mat[3][1] * tup.y) + (mat.mat[3][2] * tup.z) + (mat.mat[3][3] * tup.w);
 	return ret;
+}
+
+t_matrice   matrice_scalar_multi(t_matrice mat, float scale)
+{
+	t_matrice   ret;
+	int         x;
+	int         y;
+
+	y = 0;
+
+	while (y < 4)
+	{
+		x = 0;
+		while (x < 4)
+		{
+			ret.mat[y][x] = scale * mat.mat[y][x];
+			x++;
+		}
+		y++;
+	}
+	return (ret);
 }
