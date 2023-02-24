@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 02:25:25 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 15:46:35 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:05:49 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef	struct	s_matrice
 {
 	float   mat[4][4];
+	float   sub[3][3];
 }t_matrice;
 
 /*---bullshish*/
@@ -25,8 +26,7 @@ void		tab_init(float tab[4][4]);
 void		tab_init_1(float tab[4][4]);
 // print
 void		matrice_show(t_matrice show);
-void	    matrice_show_sub_tri(t_matrice show);
-void	    matrice_show_sub_two(t_matrice show);
+void        matrice_sub_show(t_matrice show);
 // matrice init
 t_matrice	matrice_init(float a[4][4]);
 t_matrice   matrice_scan(float grp[4][4]);
@@ -40,9 +40,11 @@ t_matrice   matrice_scalar_multi(t_matrice mat, float scale);
 t_matrice	matrice_identity(void);
 // transpose
 t_matrice	matrice_transpose(t_matrice mat);
-// inverting
-
 //     determinant
 float   matrice_det(t_matrice mat);
-
+float	matrice_sub_det(float	fl[3][3]);
+// inverting
+void    	matrice_sub(t_matrice *adj, int i, int j);
+t_matrice   matrice_adjugate(t_matrice mat);
+t_matrice   matrice_inverse(t_matrice mat);
 #endif // MATRICE_H

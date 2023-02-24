@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 02:57:40 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 15:46:48 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:17:45 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void    tab_init_1(float tab[4][4])
 {
-	tab[0][0] = -2;
-	tab[0][1] = -8;
-	tab[0][2] = 3;
-	tab[0][3] = 5;
+	tab[0][0] = -5;
+	tab[0][1] = 2;
+	tab[0][2] = 6;
+	tab[0][3] = -8;
     
-	tab[1][0] = -3;
-	tab[1][1] = 1;
-	tab[1][2] = 7;
-	tab[1][3] = 3;
+	tab[1][0] = 1;
+	tab[1][1] = -5;
+	tab[1][2] = 1;
+	tab[1][3] = 8;
 
-	tab[2][0] = 1;
-	tab[2][1] = 2;
-	tab[2][2] = -9;
-	tab[2][3] = 6;
+	tab[2][0] = 7;
+	tab[2][1] = 7;
+	tab[2][2] = -6;
+	tab[2][3] = -7;
  
-	tab[3][0] = -6;
-	tab[3][1] = 7;
+	tab[3][0] = 1;
+	tab[3][1] = -3;
 	tab[3][2] = 7;
-	tab[3][3] = -9;
+	tab[3][3] = 4;
 }
 
 bool    matrice_equal(t_matrice a, t_matrice b)
@@ -90,7 +90,26 @@ void	matrice_show(t_matrice show)
 		x = 0;
 		while (x < 4)
 		{
-			printf(" %d ", (int)show.mat[y][x]);
+			printf(" %f ", show.mat[y][x]);
+			x++;
+		}
+		y++;
+		printf("\n");
+	}
+}
+
+void	matrice_sub_show(t_matrice show)
+{
+	int	y;
+	int x;
+
+	y = 0;
+	while (y < 3)
+	{
+		x = 0;
+		while (x < 3)
+		{
+			printf(" %f ", show.sub[y][x]);
 			x++;
 		}
 		y++;
