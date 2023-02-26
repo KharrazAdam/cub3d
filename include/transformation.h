@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   transformation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/26 12:14:22 by akharraz         ###   ########.fr       */
+/*   Created: 2023/02/25 15:48:50 by akharraz          #+#    #+#             */
+/*   Updated: 2023/02/26 11:12:59 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ray.h"
+#ifndef TRANSFORMATION_H
+#define TRANSFORMATION_H
 
-int main(void)
-{
-	// t_matrice	scal;
-	t_matrice	trans;
-	t_point p;
-	t_vector v;
-
-    trans = matrice_rotat_y(M_PI_4 );
-	// scal = matrice_scaling(2, 3, 4);
-	p.tuple = tuple_initializer(0, 0, 1, 1);
-	v.tuple = tuple_initializer(2, 3, 4, 0);
-
-	tuple_print(matrice_tuple_multiplication((trans), p.tuple));
-}
+#include "matrice.h"
 
 /**
- * !as
- * ?sada
- * TODO ds
- * * dfgdfs
- * // fdsfsdfs
- * //! dfgdhiofgjld
+ * *Translation
+ * @brief move a point.
 */
+t_matrice	matrice_translation(float x, float y, float z);
+
+/**
+ * *Scaling
+*/
+t_matrice	matrice_scaling(float x, float y, float z);
+
+/**
+ * *Rotation
+*/
+t_matrice	matrice_rotat_x(float r);
+t_matrice	matrice_rotat_y(float r);
+t_matrice	matrice_rotat_z(float r);
+#endif

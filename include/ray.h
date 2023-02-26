@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/19 05:00:26 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:48:52 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "types.h"
 # include "canvas.h"
 # include "matrice.h"
+# include "transformation.h"
 
 #define EPSILON 0.00001
 typedef struct s_vars

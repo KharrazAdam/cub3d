@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 02:25:25 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/24 23:39:46 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:43:58 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ typedef	struct	s_matrice
 	float   sub[3][3];
 }t_matrice;
 
-/*---bullshish*/
+/** * 
+ * TODO to be deleted
+ * */
 void		tab_init(float tab[4][4]);
 void		tab_init_1(float tab[4][4]);
+
 // print
 void		matrice_show(t_matrice show);
 void        matrice_sub_show(t_matrice show);
