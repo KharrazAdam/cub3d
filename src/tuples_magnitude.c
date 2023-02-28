@@ -14,5 +14,5 @@
 
 float magnitude(t_tuple tup)
 {
-    return sqrt(pow(tup.x, 2) + pow(tup.y, 2) + pow(tup.z, 2) + pow(tup.w, 2));
+    return sqrtf(pow(tup.x, 2) + pow(tup.y, 2) + pow(tup.z, 2) + pow(tup.w, 2));
 }
