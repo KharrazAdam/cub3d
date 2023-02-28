@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:40:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/20 05:05:15 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:02:02 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdbool.h>
 #include <math.h>
-typedef struct tuple
+typedef struct s_tuple
 {
 	float	x; // red
 	float	y; // green
@@ -42,6 +42,8 @@ typedef struct point
 
 // tuple init
 t_tuple		tuple_initializer(float, float, float, float);
+t_point     point_initializer(float x, float y, float z);
+t_vector    vetor_initializer(float x, float y, float z);
 		/*operations on tuples*/
 // arithmitic operations
 t_tuple     tuples_add(t_tuple, t_tuple);
@@ -66,5 +68,6 @@ t_colour	colours_add(t_colour, t_colour);
 t_colour	colours_Subtracting(t_colour, t_colour);
 t_colour	colours_scalar_product(t_colour, float);
 t_colour	colours_multiplying(t_colour, t_colour); // hadamard_product
+
 
 #endif // TUPLE

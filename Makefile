@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/02/26 09:05:06 by akharraz         ###   ########.fr        #
+#    Updated: 2023/02/28 16:51:24 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,13 @@ SRC_COLOUR = src/colours_initializer.c src/colours_operations.c
 
 SRC_CANVAS = src/canvas.c
 
-SRC_MATRICE = src/matrice_gen.c src/matrice_operationc.c src/matrice_inverting.c src/matrice_transformation.c
+SRC_MATRICE = src/matrice_gen.c src/matrice_operationc.c src/matrice_inverting.c src/matrice_transformation.c src/clock.c
 
-SRC =  src/utils.c src/main.c src/tick.c ${SRC_TUPLES} ${SRC_COLOUR} ${SRC_CANVAS} ${SRC_MATRICE}
+SRC_RAY = src/ray_init.c
 
-INCLUDES = include/ray.h include/tuple.h include/types.h include/matrice.h include/canvas.h include/transformation.h
+SRC =  src/utils.c src/main.c src/tick.c ${SRC_TUPLES} ${SRC_COLOUR} ${SRC_CANVAS} ${SRC_MATRICE} ${SRC_RAY}
+
+INCLUDES = include/ray.h include/tuple.h include/types.h include/matrice.h include/canvas.h include/transformation.h include/utils.h
 
 OBJ = ${SRC:%.c=%.o}
 

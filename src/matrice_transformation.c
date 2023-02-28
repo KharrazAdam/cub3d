@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:47:56 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/26 11:48:30 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:44:09 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,25 @@ t_matrice	matrice_rotat_z(float r)
 	t_matrice   rot;
 
 	rot = matrice_identity();
-    rot.mat[0][0] = cos(r);
-    rot.mat[0][1] = -sin(r);
-    rot.mat[1][0] = sin(r);
-    rot.mat[1][1] = cos(r);
+	rot.mat[0][0] = cos(r);
+	rot.mat[0][1] = -sin(r);
+	rot.mat[1][0] = sin(r);
+	rot.mat[1][1] = cos(r);
 	return (rot);
+}
+
+t_matrice   matrice_shearing(float x[2], float y[2], float z[2])
+{
+	t_matrice   shear;
+
+	shear = matrice_identity();
+	shear.mat[0][1] = x[0];
+	shear.mat[0][2] = x[1];
+
+	shear.mat[1][0] = y[0]; 
+	shear.mat[1][2] = y[1];
+
+	shear.mat[1][0] = y[0]; 
+	shear.mat[1][2] = y[1];
+	return (shear);
 }

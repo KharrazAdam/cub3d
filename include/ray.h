@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/25 16:48:52 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:02:19 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,22 @@
 # include "canvas.h"
 # include "matrice.h"
 # include "transformation.h"
+# include "utils.h"
 
 #define EPSILON 0.00001
 typedef struct s_vars
 {
-    void    *mlx;
-    void    *win;
+	void    *mlx;
+	void    *win;
 }t_vars;
 
-    // utils
-void	ft_putnbr_fd(int nb, int fd);
-void	ft_putchar_fd(char c, int fd);
+typedef struct s_ray
+{
+	t_point		origin;
+	t_vector	direction; 
+}t_ray;
+
+t_ray   ray_init(t_point p, t_vector v);
+t_point ray_position(t_ray r, float distance);
+
 #endif // RAY_H

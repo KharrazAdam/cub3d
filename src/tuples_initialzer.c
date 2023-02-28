@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 09:11:21 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/25 15:33:23 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:20:55 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,20 @@ t_tuple	tuple_initializer(float x, float y, float z, float w)
 
     return ret;
 }
+
+t_point point_initializer(float x, float y, float z)
+{
+	t_point	ret;
+
+    ret.tuple =  tuple_initializer(x, y, z, 1);
+    return ret;
+}
+
+t_vector    vetor_initializer(float x, float y, float z)
+{
+	t_vector	ret;
+
+    ret.tuple =  tuple_initializer(x, y, z, 0);
+    return ret;
+}
+
