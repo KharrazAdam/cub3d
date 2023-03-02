@@ -28,13 +28,15 @@ INCLUDES = include/canvas.h include/matrice.h  include/ray.h  include/transforma
 
 OBJ = ${SRC:%.c=%.o}
 
+CFLAGS = -g -O2 -lm -ldl -Wall -Wpointer-arith -finline-functions -ffast-math -funroll-all-loops -lmlx -lXext -lX11 -Wall -Wextra -Werror
+
 all: ${NAME}
 
 ${NAME}: ${OBJ} ${INCLUDES}
-	cc -fsanitize=address $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	cc -fsanitize=address $(OBJ) $(CFLAGS) -o $(NAME)
 
-%.o : %.c
-	cc -fsanitize=address -Imlx -c $< -o $@
+# %.o : %.c
+# 	cc -fsanitize=address -Imlx -c $< -o $@
 
 clean:
 	rm -f ${OBJ}
