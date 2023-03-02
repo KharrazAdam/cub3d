@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:40:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/28 19:02:02 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/03/01 23:01:16 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ bool        tuples_equal(t_tuple a, t_tuple b);
 // tuples_negating
 t_tuple     tuples_negating(t_tuple);
 // scalar operations
-t_tuple     scalar_multipli(t_tuple, float);
-t_tuple     scalar_deviding(t_tuple, float);
+t_tuple     tuple_scalar_multipli(t_tuple, float);
+t_tuple     tuple_scalar_deviding(t_tuple, float);
 // magnitude
 float       magnitude(t_tuple);
 // normalization
 t_tuple     nrml(t_tuple);
 // production operations
-float		dot_product(t_tuple, t_tuple);
+float		tuple_dot_product(t_tuple, t_tuple);
 t_tuple		cross_product(t_tuple, t_tuple);
 void        tuple_print(t_tuple sum);
 		/*operations on colours*/

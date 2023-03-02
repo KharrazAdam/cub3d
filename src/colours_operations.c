@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:22:13 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/16 05:17:37 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:31:22 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_colour	colour_scalar_product(t_colour multiplicand, float scale)
 {
     t_colour ret;
 
-    ret.tuple = scalar_multipli(multiplicand.tuple, scale);
+    ret.tuple = tuple_scalar_multipli(multiplicand.tuple, scale);
     return ret;
 }
 

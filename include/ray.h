@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/28 19:02:19 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/03/02 02:03:49 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # include "tuple.h"
 # include "types.h"
@@ -33,13 +34,28 @@ typedef struct s_vars
 	void    *win;
 }t_vars;
 
+typedef struct s_xs
+{
+	float       discriminant;
+	float       t1;
+	float       t2;
+	int         count;
+}t_xs;
+
 typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	direction; 
+	t_xs		xs;
 }t_ray;
 
-t_ray   ray_init(t_point p, t_vector v);
+typedef struct s_sphere
+{
+	int var;
+}t_sphere;
+
+t_ray	ray_init(t_point p, t_vector v);
 t_point ray_position(t_ray r, float distance);
+bool    ray_intersect(t_ray  *r);
 
 #endif // RAY_H

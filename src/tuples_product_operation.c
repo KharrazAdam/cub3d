@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   product_operation.c                                :+:      :+:    :+:   */
+/*   tuples_product_operation.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 05:11:05 by akharraz          #+#    #+#             */
-/*   Updated: 2023/02/13 05:20:21 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:44:58 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../include/ray.h"
 
-float		dot_product(t_tuple f_tup, t_tuple s_tup)
+float   tuple_dot_product(t_tuple f_tup, t_tuple s_tup)
 {
     float ret;
 
