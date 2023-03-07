@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:25:36 by akharraz          #+#    #+#             */
-/*   Updated: 2023/03/02 02:03:49 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/03/07 04:03:12 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,18 @@ typedef struct s_ray
 	t_xs		xs;
 }t_ray;
 
-typedef struct s_sphere
-{
-	int var;
-}t_sphere;
-
 t_ray	ray_init(t_point p, t_vector v);
 t_point ray_position(t_ray r, float distance);
 bool    ray_intersect(t_ray  *r);
 
 #endif // RAY_H
+
+// /**
+//   !as
+//   ?sada
+//   TODO ds
+//   * dfgdfs
+//   // fdsfsdfs
+//   //! dfgdhiofgjld
+// */
+ 

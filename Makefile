@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/03/01 16:35:34 by akharraz         ###   ########.fr        #
+#    Updated: 2023/03/07 02:43:43 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,15 @@ INCLUDES = include/canvas.h include/matrice.h  include/ray.h  include/transforma
 
 OBJ = ${SRC:%.c=%.o}
 
-CFLAGS = -g -O2 -lm -ldl -Wall -Wpointer-arith -finline-functions -ffast-math -funroll-all-loops -lmlx -lXext -lX11 -Wall -Wextra -Werror
+CFLAGS =  -lmlx -Imlx -Wall -Wextra -Werror
 
 all: ${NAME}
-
 ${NAME}: ${OBJ} ${INCLUDES}
-	cc -fsanitize=address $(OBJ) $(CFLAGS) -o $(NAME)
-
-# %.o : %.c
-# 	cc -fsanitize=address -Imlx -c $< -o $@
-
+	cc -fsanitize=address $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+%.o : %.c
+	cc -fsanitize=address -Imlx -c $< -o $@
 clean:
 	rm -f ${OBJ}
-
 fclean: clean
 	rm -f ${NAME}
-
 re: fclean all
