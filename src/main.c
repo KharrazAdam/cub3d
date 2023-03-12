@@ -5,106 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 01:39:48 by akharraz          #+#    #+#             */
-/*   Updated: 2023/03/08 00:39:11 by akharraz         ###   ########.fr       */
+/*   Created: 2023/03/07 00:02:15 by ysakine           #+#    #+#             */
+/*   Updated: 2023/03/11 02:03:34 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ray.h"
 
-typedef struct s_sphere
+#include "../includes/minirt.h"
+
+uint32_t	ray_colour()
 {
-	t_point position;
-	float   radius;
-	float   hit;
-}t_sphere;
-
-typedef struct s_camera
-{
-	t_point position;
-	t_vector vector;
-	float  zoom;
-}t_camera;
-
-void    setupScene(t_camera *cam, t_sphere *sph)
-{
-	cam->position = point_initializer(0, 0, 3.5);
-	cam->vector = vetor_initializer(0, 0, -1);
-	cam->zoom = 0.1;
-
-	sph->position = point_initializer(0, 0, -3.4);
-	sph->radius = 0.2;
+	return (0x00FFFF);
 }
 
-bool	SolveQuadratic(float a, float b, float c, float *t0, float *t1)
+int main(int ac, char **av)
 {
-	float	disc;
+	t_list		**rt_file;
+	t_ambient	ambient;
+	t_camera	 cam;
+	t_light		light;
+	t_list		**sps = ft_calloc(sizeof(t_list *), 1);
+	t_list		**pls = ft_calloc(sizeof(t_list *), 1);
+	t_list		**cls = ft_calloc(sizeof(t_list *), 1);
+	int			fd;
 
-	disc = (b * b) - (4 * a * c);
-	if (disc < 0)
-		return false;
-	if (disc == 0)
+	if (ac != 2 || ft_strncmp(&av[1][ft_strlen(av[1]) - 3],".rt", 4))
 	{
-		*t0 = -b / (2 * a);
-		*t1 = -b / (2 * a);
-		return true;
+		ft_putstr_fd("Error\nplease provide a valid rt file lah ij3al rebbi y7enn 3lik\n", 2);
+		return (1);
 	}
-	*t0 = (-b + sqrt(disc)) / (2 * a);
-	*t0 = (-b - sqrt(disc)) / (2 * a);
-	return true;	
-}
-
-bool	intersect(t_vector direction, t_camera cam, t_sphere sph)
-{
-	t_vector L;
-
-	L.tuple = tuples_Subtracting(cam.position.tuple, sph.position.tuple);
-	float	a = tuple_dot_product(direction.tuple, direction.tuple);
-	float	b = 2 * tuple_dot_product(direction.tuple, L.tuple);
-	float	c = tuple_dot_product(L.tuple, L.tuple) - pow(sph.radius, 2);
-
-	float	t0;
-	float	t1;
-
-	if (SolveQuadratic(a, b, c, &t0, &t1) == true)
-		return true;
-	return false;
-}
-
-uint32_t ray_tracer(t_vector direction, t_camera cam, t_sphere sph, int x, int y)
-{
-	if (intersect(direction, cam, sph))
+	fd = open(av[1], O_RDONLY);
+	rt_file = read_file(fd);
+	if (check_and_fill_lights(&ambient, &cam, &light, rt_file) != 3)
 	{
-		printf("%d----------%d\n", x, y);
-		return 0xf0ff00 ;
+		ft_putstr_fd("Error\nsomething went wrong\n", 2);
+		ft_lstclear(rt_file,free);
+		return (1);
 	}
-	return 0x00c3f0;
-}
+	if (check_and_fill_shapes(rt_file, sps, pls, cls) == false)
+		return ft_lstclear(rt_file, free), -1;
 
-int main(void)
-{
-	t_vars      mlx;
-	t_camera    cam;
-	t_sphere    sph;
-	t_vector	direction;
+	//-------------start the rendring--------------//
 
-	int x = 0;
-	int y = 0;
+	t_vars		mlx;
+	t_colour	col;
+	int x, y = 0;
 
-	setupScene(&cam, &sph);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 500, 500, "fayrouz");
-	while (x < 500)
+	while (y < 500)
 	{
-		y = 0;
-		while (y < 500)
+		x = 0;
+		while (x < 500)
 		{
-			direction.tuple = nrml(tuples_Subtracting(vetor_initializer(x, y, cam.zoom).tuple, cam.position.tuple));
-			mlx_pixel_put(mlx.mlx, mlx.win, x, y, ray_tracer(direction, cam, sph, x, y));
-			y++;
+			mlx_pixel_put(mlx.mlx, mlx.win, x, y, ray_colour());
+			x++;
 		}
-		x++;
+		y++;
 	}
 	mlx_loop(mlx.mlx);
-	return 0;
+	close(fd);
+	clear_shapes(sps, pls, cls);
+	ft_lstclear(rt_file, free);
+	return (0);
 }

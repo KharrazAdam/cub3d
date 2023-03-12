@@ -5,38 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/13 01:22:54 by akharraz          #+#    #+#              #
-#    Updated: 2023/03/07 02:43:43 by akharraz         ###   ########.fr        #
+#    Created: 2023/03/09 16:50:38 by ysakine           #+#    #+#              #
+#    Updated: 2023/03/12 22:50:57 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RayTracer.out
+SRC_MATH = math_go/tuples_arth_oper.c math_go/tuples_negating.c math_go/tuples_magnitude.c math_go/tuples_product_operation.c math_go/tuples_normalization.c math_go/tuples_initialzer.c math_go/tuples_scalar_operations.c math_go/colours_initializer.c math_go/colour.c
 
-SRC_TUPLES = src/tuples_arth_oper.c src/tuples_negating.c src/tuples_magnitude.c src/tuples_product_operation.c src/tuples_normalization.c src/tuples_initialzer.c src/tuples_scalar_operations.c
-
-SRC_COLOUR = src/colours_initializer.c src/colours_operations.c
-
-SRC_CANVAS = src/canvas.c
-
-SRC_MATRICE = src/matrice_gen.c src/matrice_operationc.c src/matrice_inverting.c src/matrice_transformation.c src/clock.c
-
-SRC_RAY = src/ray_init.c src/ray_position.c src/ray_intersection.c
-
-SRC = src/utils.c src/main.c src/tick.c ${SRC_TUPLES} ${SRC_COLOUR} ${SRC_CANVAS} ${SRC_MATRICE} ${SRC_RAY}
-
-INCLUDES = include/canvas.h include/matrice.h  include/ray.h  include/transformation.h  include/tuple.h include/types.h include/utils.h
-
-OBJ = ${SRC:%.c=%.o}
-
-CFLAGS =  -lmlx -Imlx -Wall -Wextra -Werror
+SRC = ${SRC_MATH} parsing/parsing.c parsing/utils.c parsing/utils2.c utils/ft_atof.c get_next_line/get_next_line.c parsing/parsing_shapes.c parsing/parsing_sphere.c parsing/parsing_plane.c parsing/parsing_plane_utils.c parsing/parsing_cy.c parsing/parsing_cy_utils.c
+obj = $(addprefix obj/, $(SRC:.c=.o))
+NAME = miniRT
+CFLAGS =-Wall -Wextra -Werror
+libft = libft.a
 
 all: ${NAME}
-${NAME}: ${OBJ} ${INCLUDES}
-	cc -fsanitize=address $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-%.o : %.c
-	cc -fsanitize=address -Imlx -c $< -o $@
+
+${NAME}: test ${obj}
+	cd libft && make
+	cc ${CFLAGS} -lmlx -framework OpenGL -framework AppKit ${libft} ${obj} src/main.c -o ${NAME}
+
+test:
+	@echo $(obj)
+
+obj/%.o : src/%.c
+	cc ${CFLAGS} -c $< -o $@
+
 clean:
-	rm -f ${OBJ}
-fclean: clean
+	cd libft && make clean
+	rm -f ${obj}
+
+fclean : clean
+	cd libft && make fclean
 	rm -f ${NAME}
-re: fclean all
+
+re : fclean ${NAME}

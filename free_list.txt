@@ -1,2 +1,0 @@
-I-  canvas fumctions
-II- src/ray_intersection.c 
