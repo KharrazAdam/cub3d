@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:19:38 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/10 19:56:27 by ysakine          ###   ########.fr       */
+/*   Updated: 2023/03/20 02:20:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "../../inc/get_next_line.h"
 
 int	search_for_nl(char *s)
 {

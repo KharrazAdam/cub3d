@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:33:17 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/10 20:47:43 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/11 14:47:47 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/15 10:30:11 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const	*s1, char const	*s2)
 {
-	size_t	size;
-	char	*buff;
+	char	*al;
 	size_t	i;
-	size_t	len_s1;
-	size_t	len_s2;
+	size_t	j;
 
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	size = len_s1 + len_s2 + 1;
-	buff = ft_calloc(size, sizeof(char));
-	i = -1;
-	if (!buff)
+	if (!s1 || !s2)
 		return (0);
-	while (++i < len_s1)
-		buff[i] = s1[i];
-	while (i < size - 1)
+	al = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (al == 0)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i <= ft_strlen(s1) + ft_strlen(s2))
 	{
-		buff[i] = s2[i - len_s1];
+		while (i < ft_strlen(s1))
+		{
+			al[i] = s1[i];
+			i++;
+		}
+		al[i] = s2[j];
 		i++;
+		j++;
 	}
-	return (free(s1), free(s2), buff);
+	al[i] = '\0';
+	return (al);
 }

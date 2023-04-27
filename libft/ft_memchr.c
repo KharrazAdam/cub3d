@@ -3,26 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 14:21:08 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:16 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/08 12:42:12 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/15 10:24:16 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			i;
-	unsigned char	*r;
+	unsigned char	*casts;
+	unsigned char	castc;
 
 	i = 0;
-	r = (unsigned char *)s;
+	casts = (unsigned char *)s;
+	castc = (unsigned char)c;
 	while (i < n)
 	{
-		if (r[i] == (unsigned char) c)
-			return (&r[i]);
+		if (casts[i] == castc)
+		{
+			return (&casts[i]);
+		}
 		i++;
 	}
 	return (0);

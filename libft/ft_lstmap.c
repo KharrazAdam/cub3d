@@ -3,33 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 10:41:20 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:16 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/21 15:41:59 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/22 18:15:12 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*head;
+	t_list	*res;
 
-	head = NULL;
-	if (!f)
-		return (NULL);
-	while (lst)
+	if (lst)
 	{
-		new = ft_lstnew(f(lst->content));
-		if (!new)
+		res = ft_lstnew(f(lst->content));
+		if (!res)
 		{
-			ft_lstclear(&head, del);
-			return (NULL);
+			ft_lstclear(&res, del);
+			return (res);
 		}
-		ft_lstadd_back(&head, new);
-		lst = lst->next;
+		res->next = ft_lstmap(lst->next, f, del);
+		return (res);
 	}
-	return (head);
+	return (NULL);
 }

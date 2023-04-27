@@ -3,40 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 17:11:58 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:16 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/12 14:48:35 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/17 18:02:33 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*buff;
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	l;
+	char	*ml;
+	int		i;
+	int		j;
 
-	i = 0;
-	j = ft_strlen(s1) - 1;
-	k = 0;
-	while (s1[i] && ft_strchr(set, s1[i]))
-		i++;
-	while (j && ft_strchr(set, s1[j]))
-		j--;
-	if (j <= i || !s1[0])
-	{
-		buff = ft_calloc(1, sizeof(char));
-		return (buff);
-	}
-	buff = ft_calloc(j - i + 2, sizeof(char));
-	if (!buff)
+	if (!s1 || !set)
 		return (0);
-	l = j - i + 1;
-	while (k < l)
-		buff[k++] = s1[i++];
-	return (buff);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		if (ft_strchr(set, s1[i]) == 0)
+			break ;
+		i++;
+	}
+	j = ft_strlen(s1);
+	while (j >= 0 && ft_strlen(set) > 0)
+	{
+		if (ft_strrchr(set, s1[j]) == 0)
+			break ;
+		j--;
+	}
+	ml = ft_substr(s1, i, j + 1 - i);
+	if (ml == 0)
+		return (0);
+	return (ml);
 }

@@ -3,30 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 16:46:16 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:16 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/09 11:21:43 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/21 21:38:20 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	*ft_memmove(void	*dst, const	void *src, size_t len)
 {
-	size_t			i;
-	unsigned char	*s;
-	unsigned char	*d;
+	size_t	i;
+	char	*castdst;
+	char	*castsrc;
 
-	s = (unsigned char *)src;
-	d = (unsigned char *)dst;
-	i = n;
-	if (s < d)
+	i = 0;
+	castdst = (char *)dst;
+	castsrc = (char *)src;
+	if (dst == 0 && src == 0)
+		return (0);
+	while (len > 0 && castdst > castsrc)
 	{
-		while (i--)
-			d[i] = s[i];
-		return (dst);
+		castdst[len - 1] = castsrc[len - 1];
+		len--;
 	}
-	ft_memcpy(dst, src, n);
-	return (d);
+	while (len > 0)
+	{
+		castdst[i] = castsrc[i];
+		i++;
+		len--;
+	}
+	return (dst);
 }

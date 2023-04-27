@@ -3,77 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 18:31:17 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:16 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/15 10:11:29 by ahel-bah          #+#    #+#             */
+/*   Updated: 2021/11/22 19:17:55 by ahel-bah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-static int	numlen(long long int n)
+int	ft_intlen(long n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
+	i = 0;
 	if (n == 0)
 		return (1);
-	while (n)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-char	*all(int n)
-{
-	long long int	n2;
-	char			*ret;
-	size_t			i;
-
-	n2 = (long long int) n;
 	if (n < 0)
 	{
-		n2 = -n2;
-		i = numlen(n2) + 2;
-		ret = (char *) ft_calloc(i, sizeof(char));
-		if (!ret)
-			return (NULL);
+		i++;
+		n = n * -1;
 	}
-	else
+	while (n > 0)
 	{
-		i = numlen(n) + 1;
-		ret = (char *)ft_calloc(i, sizeof(char));
-		if (!ret)
-			return (NULL);
+		n = (n / 10);
+		i++;
 	}
-	ret[0] = '0';
-	return (ret);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t			i;
-	char			*ret;
-	long long int	n2;
+	int		i;
+	char	*ml;
+	long	c;
+	int		ifneg;
 
-	ret = all(n);
-	i = numlen(n);
-	n2 = (long long int) n;
-	if (!ret)
-		return (NULL);
-	if (n < 0)
+	c = n;
+	ifneg = 0;
+	i = ft_intlen(c);
+	ml = malloc(i + 1);
+	if (ml == 0)
+		return (0);
+	ml[i] = '\0';
+	if (c < 0)
 	{
-		n2 = -n2;
-		ret[0] = '-';
-		i++;
+		c = c * -1;
+		ml[0] = '-';
+		ifneg = 1;
 	}
-	while (n2 && i--)
+	while (i > ifneg)
 	{
-		ret[i] = (n2 % 10) + '0';
-		n2 /= 10;
+		i--;
+		ml[i] = (c % 10) + 48;
+		c = (c / 10);
 	}
-	return (ret);
+	return (ml);
 }

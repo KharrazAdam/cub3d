@@ -3,88 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysakine <ysakine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 14:02:04 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/08 01:22:22 by ysakine          ###   ########.fr       */
+/*   Created: 2021/11/12 15:44:27 by ahel-bah          #+#    #+#             */
+/*   Updated: 2023/04/21 20:46:09 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	clear(char **arr)
+int	ft_countw(char const *s, char c)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	j = 0;
+	if (s[0] != c)
+		j++;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+			j++;
+		i++;
+	}
+	return (j);
 }
 
-static int	count_words(char const *str, char c)
+int	ft_lencount(char const *s, char c)
 {
-	int	count;
 	int	i;
 
-	count = 0;
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			i++;
-			continue ;
-		}
-		count++;
-		while (str[i] != c && str[i])
-			i++;
-	}
-	return (count);
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+	return (i);
 }
 
-static char	**fill_array_with_words(char **arr, char const *str, char c)
+void	clear(char **ml)
 {
-	int	index;
 	int	i;
-	int	tmp_i;
 
-	index = 0;
 	i = 0;
-	while (str[i])
+	while (ml[i])
 	{
-		if (str[i] == c)
-		{
-			i++;
-			continue ;
-		}
-		tmp_i = i;
-		while (str[i] != c && str[i])
-			i++;
-		arr[index] = malloc(i - tmp_i + 1);
-		if (!arr[index])
-			return (NULL);
-		ft_strlcpy(arr[index++], str + tmp_i, i - tmp_i + 1);
+		free(ml[i]);
+		i++;
 	}
-	arr[index] = NULL;
-	return (arr);
+	free(ml);
+}
+
+char	**split2(char **ml, const char *s, char c)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s[i] && j < ft_countw(s, c))
+	{
+		if (s[i] != c)
+		{
+			ml[j] = ft_substr(s, i, ft_lencount(s + i, c));
+			if (!ml[j])
+			{
+				clear(ml);
+				return (NULL);
+			}
+			i = i + ft_lencount(s + i, c);
+			j++;
+		}
+		i++;
+	}
+	ml[j] = NULL;
+	return (ml);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**array;
-	int		words_count;
+	char	**ml;
 
 	if (!s)
-		return (NULL);
-	words_count = count_words(s, c);
-	array = malloc((words_count + 1) * sizeof(char *));
-	if (!array)
-		return (NULL);
-	if (!fill_array_with_words(array, s, c))
-	{
-		clear(array);
-		return (NULL);
-	}
-	return (array);
+		return (0);
+	ml = malloc(sizeof(char *) * (ft_countw(s, c) + 1));
+	if (ml == 0)
+		return (0);
+	return (split2(ml, s, c));
 }

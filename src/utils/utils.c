@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahel-bah <ahel-bah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 18:23:23 by ahel-bah          #+#    #+#             */
-/*   Updated: 2021/11/18 20:45:28 by ahel-bah         ###   ########.fr       */
+/*   Created: 2023/03/19 15:39:38 by ysakine           #+#    #+#             */
+/*   Updated: 2023/04/25 15:29:26 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/cub3d.h"
 
-size_t	ft_strlen(const char *s)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	size_t	i;
+	char	*dst;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
