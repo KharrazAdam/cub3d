@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/04/27 20:14:41 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:31:41 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,8 @@ int	key_rel(int	key, t_map *map)
 
 int afak(t_map *map)
 {
-	t_data img;
-
 	map->mlx.mlx = mlx_init();
-	map->mlx.win = mlx_new_window(map->mlx.mlx, (map->map_w - 1) * FS, map->map_h * FS, "cub3D");
-	img.img = mlx_new_image(map->mlx.mlx, (map->map_w - 1) * FS, map->map_h * FS);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								 &img.endian);
+	map->mlx.win = mlx_new_window(map->mlx.mlx, WIDTH, HIGHT, "cub3D");
 	mlx_loop_hook(map->mlx.mlx, draw_map, map);
 	mlx_hook(map->mlx.win, 2, 1, key_but, map);
 	mlx_hook(map->mlx.win, 3, 2, key_rel, map);

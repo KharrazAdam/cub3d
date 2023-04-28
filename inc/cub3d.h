@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/04/26 20:41:57 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:34:00 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 #define LF 16
 #define RH 32
 
-#define HIGHT 720
+#define HIGHT 960
 #define WIDTH 1280
 #define FOV M_PI / 3 // wich equals to 60 deg
 

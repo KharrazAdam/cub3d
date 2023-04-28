@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/04/27 20:26:42 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:41:14 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,25 @@ void DDA(int X0, int Y0, int X1, int Y1, t_data *data)
 	}
 }
 
-// bool	not_wall(t_map *map, int x, int y)
-// {
-// 	if (map->map[y][x] == '1')
-// 		return (false);
-// 	return (true);
-// }
-
-bool	is_wall(t_ray ray, t_map *map, bool check)
+bool	is_wall_v(t_ray ray, t_map *map, double ang)
 {
-	// printf("is wall %d,  %d\n", (int)ray.y , (int)ray.x);
-	if ((check == false && (ray.y > map->map_h || ray.y < 0))
-		|| (check == true && (ray.x > map->map_w || ray.x < 0))
-		|| map->map[(int)ray.y][(int)ray.x] == '1')
+	if ((ray.y) <= 0 || ray.y >= map->map_h)
+		return (true);
+	if (ang > M_PI / 2 && ang < (3 * M_PI) / 2)
+		ray.x--;
+	if (map->map[(int)ray.y][(int)ray.x] == '1')
+		return (true);
+	return (false);
+}
+
+bool is_wall_h(t_ray ray, t_map *map, double ang)
+{
+	if (ray.x <= 0 || ray.x >= map->map_w)
+		return (true);
+	if (ang >= M_PI)
+		ray.y--;
+	(void)ang;
+	if (map->map[(int)ray.y][(int)ray.x] == '1')
 		return (true);
 	return (false);
 }
@@ -86,7 +92,7 @@ t_ray	vertical_intersection(t_map *map, double angle)
 	if (angle < M_PI / 2 || angle > (3 * M_PI) / 2)
 		ver.x++;
 	ver.y = map->p_pos.y + tan(angle) * (ver.x - map->p_pos.x);
-	while (!is_wall(ver, map, false))
+	while (!is_wall_v(ver, map, angle))
 	{
 		if (angle < M_PI / 2 || angle > (3 * M_PI) / 2)
 		{
@@ -99,8 +105,6 @@ t_ray	vertical_intersection(t_map *map, double angle)
 			ver.y -= tan(angle);
 		}
 	}
-	if (!(angle < M_PI / 2 || angle > (3 * M_PI) / 2))
-		ver.x++;
 	return (ver);
 }
 
@@ -112,20 +116,19 @@ t_ray	hor_intersection(t_map *map, double angle)
 	if (angle < M_PI)
 		hor.y++;
 	hor.x = map->p_pos.x + (hor.y - map->p_pos.y) / tan(angle);
-	// while (!is_wall(hor, map, true))
-	// {
-	// 	if (angle < M_PI)
-	// 	{
-	// 		hor.y++;
-	// 		hor.x += 1 / tan(angle);
-	// 	}
-	// 	else
-	// 	{
-	// 		hor.y--;
-	// 		hor.x -= 1 / tan(angle);
-	// 	}
-	// }
-	
+	while (!is_wall_h(hor, map, angle))
+	{
+		if (angle < M_PI)
+		{
+			hor.y++;
+			hor.x += 1 / tan(angle);
+		}
+		else
+		{
+			hor.y--;
+			hor.x -= 1 / tan(angle);
+		}
+	}
 	return (hor);
 }
 
@@ -134,21 +137,38 @@ double	distance(double x, double y, double x1, double y1)
 	return (sqrt(pow(x1 - x, 2) + pow(y1 - y, 2)));
 }
 
+double	normalize_angle(double angle) ///// why!!!!!!???????????????
+{
+	angle = fmod(angle, (2 * M_PI));
+	if (angle < 0)
+		angle = angle + (2 * M_PI);
+	return (angle);
+}
+
 void	cast(t_map *map, t_data *data)
 {
+	t_ray	ver;
+	t_ray 	hor;
 	double	angle;
+	int		i;
+
+	i = 0;
 	angle = map->p_pos.ang - (FOV / 2);
-	if (angle < 0)
-		angle += 2 * M_PI;
-	printf("angle: ray %f , player %f ray - player %f\n", angle, map->p_pos.ang, (map->p_pos.ang - angle) * 180 / M_PI);
-	t_ray	ver = vertical_intersection(map, angle);
-	t_ray hor = hor_intersection(map, angle);
-	// printf("ver %f , %f\nhor %f , %f\n", ver.x, ver.y, hor.x, hor.y);
-	// printf("distance %f , %f\n", distance(map->p_pos.x, map->p_pos.y, ver.x, ver.y), distance(map->p_pos.x, map->p_pos.y, hor.x, hor.y));
-	if (distance(map->p_pos.x, map->p_pos.y, ver.x, ver.y) < distance(map->p_pos.x, map->p_pos.y, hor.x, hor.y))
-		DDA(map->p_pos.x * FS, map->p_pos.y * FS, ver.x * FS, ver.y * FS, data);
-	else
-		DDA(map->p_pos.x * FS, map->p_pos.y * FS, hor.x * FS, hor.y * FS, data);
+	while (i < WIDTH)
+	{
+		angle = normalize_angle(angle);
+		ver = vertical_intersection(map, angle);
+		hor = hor_intersection(map, angle);
+		(void)hor;
+		(void)ver;
+		(void)data;
+		if (distance(map->p_pos.x, map->p_pos.y, ver.x, ver.y) < distance(map->p_pos.x, map->p_pos.y, hor.x, hor.y))
+			DDA(map->p_pos.x * FS, map->p_pos.y * FS, ver.x * FS, ver.y * FS, data);
+		else
+			DDA(map->p_pos.x * FS, map->p_pos.y * FS, hor.x * FS, hor.y * FS, data);
+		i++;
+		angle += FOV / WIDTH;
+	}
 }
 
 int draw_map(t_map *map)
@@ -156,7 +176,7 @@ int draw_map(t_map *map)
 	int i, j;
 	t_data img;
 	move(map);
-	img.img = mlx_new_image(map->mlx.mlx, (map->map_w - 1) * FS, map->map_h * FS);
+	img.img = mlx_new_image(map->mlx.mlx, WIDTH, HIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
 	while (map->map[j])
