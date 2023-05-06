@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cast_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:39:38 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/06 13:56:40 by akharraz         ###   ########.fr       */
+/*   Created: 2023/05/06 13:57:22 by akharraz          #+#    #+#             */
+/*   Updated: 2023/05/06 13:58:38 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+double	pyth(double x, double y, double x1, double y1)
+{
+	return (sqrt(pow(x1 - x, 2) + pow(y1 - y, 2)));
 }
 
+double	fix_ang(double angle)
+{
+	if (angle < 0)
+		angle = angle + (2 * M_PI);
+	else if (angle > 2 * M_PI)
+		angle = angle - (2 * M_PI);
+	return (angle);
+}

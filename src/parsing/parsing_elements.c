@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:15:52 by akharraz          #+#    #+#             */
-/*   Updated: 2023/03/21 07:54:11 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:52:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	generate_rgb(int *f_col, char **spl)
 		i++;
 		deg -= 8;
 	}
-	return (true);	
+	return (true);
 }
 
 bool	fill_text(char *key, char *str, t_map *map)

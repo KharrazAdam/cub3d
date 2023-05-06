@@ -6,11 +6,12 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/04/28 17:41:14 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:09:44 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
 
 void draw_player(t_data *img, t_map *map)
 {
@@ -61,135 +62,82 @@ void DDA(int X0, int Y0, int X1, int Y1, t_data *data)
 	}
 }
 
-bool	is_wall_v(t_ray ray, t_map *map, double ang)
+void	paint(t_map *map, t_data *img, int len, int start, t_ray ray, int wid_i)
 {
-	if ((ray.y) <= 0 || ray.y >= map->map_h)
-		return (true);
-	if (ang > M_PI / 2 && ang < (3 * M_PI) / 2)
-		ray.x--;
-	if (map->map[(int)ray.y][(int)ray.x] == '1')
-		return (true);
-	return (false);
-}
+	int	off_x;
+	int	off_y;
+	int	i;
 
-bool is_wall_h(t_ray ray, t_map *map, double ang)
-{
-	if (ray.x <= 0 || ray.x >= map->map_w)
-		return (true);
-	if (ang >= M_PI)
-		ray.y--;
-	(void)ang;
-	if (map->map[(int)ray.y][(int)ray.x] == '1')
-		return (true);
-	return (false);
-}
+	int h;
+	int w;
+	int bit_per_px;
+	int size_line;
+	int endian;
 
-t_ray	vertical_intersection(t_map *map, double angle)
-{
-	t_ray ver;
+	void *txty = mlx_xpm_file_to_image(map->mlx.mlx, map->n_textures, &w, &h);
+	unsigned int *txt = (unsigned int *)mlx_get_data_addr(txty, &bit_per_px, &size_line, &endian);
 
-	ver.x = (int)map->p_pos.x;
-	if (angle < M_PI / 2 || angle > (3 * M_PI) / 2)
-		ver.x++;
-	ver.y = map->p_pos.y + tan(angle) * (ver.x - map->p_pos.x);
-	while (!is_wall_v(ver, map, angle))
+	(void)txt;
+	(void)img;
+	(void)map;
+	if (ray.inter == HORIZONTAL_INTER)
+		off_x = (ray.x - (int)ray.x) * w;
+	else
+		off_x = (ray.y - (int)ray.y) * w;
+	i = start;
+	while (i < len && i < HIGHT)
 	{
-		if (angle < M_PI / 2 || angle > (3 * M_PI) / 2)
-		{
-			ver.x++;
-			ver.y += tan(angle);
-		}
-		else
-		{
-			ver.x--;
-			ver.y -= tan(angle);
-		}
-	}
-	return (ver);
-}
-
-t_ray	hor_intersection(t_map *map, double angle)
-{
-	t_ray hor;
-
-	hor.y = (int)map->p_pos.y;
-	if (angle < M_PI)
-		hor.y++;
-	hor.x = map->p_pos.x + (hor.y - map->p_pos.y) / tan(angle);
-	while (!is_wall_h(hor, map, angle))
-	{
-		if (angle < M_PI)
-		{
-			hor.y++;
-			hor.x += 1 / tan(angle);
-		}
-		else
-		{
-			hor.y--;
-			hor.x -= 1 / tan(angle);
-		}
-	}
-	return (hor);
-}
-
-double	distance(double x, double y, double x1, double y1)
-{
-	return (sqrt(pow(x1 - x, 2) + pow(y1 - y, 2)));
-}
-
-double	normalize_angle(double angle) ///// why!!!!!!???????????????
-{
-	angle = fmod(angle, (2 * M_PI));
-	if (angle < 0)
-		angle = angle + (2 * M_PI);
-	return (angle);
-}
-
-void	cast(t_map *map, t_data *data)
-{
-	t_ray	ver;
-	t_ray 	hor;
-	double	angle;
-	int		i;
-
-	i = 0;
-	angle = map->p_pos.ang - (FOV / 2);
-	while (i < WIDTH)
-	{
-		angle = normalize_angle(angle);
-		ver = vertical_intersection(map, angle);
-		hor = hor_intersection(map, angle);
-		(void)hor;
-		(void)ver;
-		(void)data;
-		if (distance(map->p_pos.x, map->p_pos.y, ver.x, ver.y) < distance(map->p_pos.x, map->p_pos.y, hor.x, hor.y))
-			DDA(map->p_pos.x * FS, map->p_pos.y * FS, ver.x * FS, ver.y * FS, data);
-		else
-			DDA(map->p_pos.x * FS, map->p_pos.y * FS, hor.x * FS, hor.y * FS, data);
+		off_y = ((i - start) / (double)(len - start)) * h;
+		if (i >= 0)
+			my_mlx_pixel_put(img, wid_i, i, txt[((h * off_y) + off_x)]);
 		i++;
-		angle += FOV / WIDTH;
 	}
+}
+
+void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
+{
+	double	proj_wall_h;
+	int		i;
+	int 	len;
+	int		j;
+
+	j = -1;
+	ray.diatance = ray.diatance * cos(map->p_pos.ang - anglr);
+	proj_wall_h = (1 / ray.diatance) * (((WIDTH) / 2) / FS);
+	proj_wall_h = proj_wall_h * HIGHT / FS;
+	i = ((HIGHT) - (proj_wall_h)) / 2;
+	len = (proj_wall_h) + i;
+	while (++j < i)
+		my_mlx_pixel_put(img, wid_i, j, map->c_col);
+	// while (i < len && i < HIGHT)
+	// {
+	// 	my_mlx_pixel_put(img, wid_i, i, 0xFF00);
+	// 	i++;
+	// }
+	paint(map,img, len, i, ray, wid_i);
+	len--;
+	while (len++ < HIGHT)
+		my_mlx_pixel_put(img, wid_i, len, map->f_col);
 }
 
 int draw_map(t_map *map)
 {
-	int i, j;
 	t_data img;
 	move(map);
 	img.img = mlx_new_image(map->mlx.mlx, WIDTH, HIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
-	while (map->map[j])
-	{
-		i = 0;
-		while (map->map[j][i])
-		{
-			draw_grid(&img, i, j, map);
-			i++;
-		}
-		j++;
-	}
-	draw_player(&img, map);
+	// while (map->map[j])
+	// {
+	// 	i = 0;
+	// 	while (map->map[j][i])
+	// 	{
+	// 		draw_grid(&img, i, j, map);
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
+	// draw_player(&img, map);
 	cast(map, &img);
 	mlx_put_image_to_window(map->mlx.mlx, map->mlx.win, img.img, 0, 0);
 	mlx_destroy_image(map->mlx.mlx, img.img);

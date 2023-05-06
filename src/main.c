@@ -6,58 +6,41 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/04/28 17:31:41 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:50:20 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int red_cross(void *map)
+bool	fill_xpm(t_data *xpm, char *path, void *mlx)
 {
-	(void)map;
-	exit(0);
-	return (0);
+	xpm->img = mlx_xpm_file_to_image(mlx, path, &xpm->w, &xpm->h);
+	if (!xpm->img)
+		return (ft_putendl_fd("Error\nissue in .xpm file", 2), 0);
+	xpm->addr = mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel, &xpm->line_length, &xpm->endian);
+	if (!xpm->addr)
+		return (ft_putendl_fd("Error\nissue in .xpm adrr", 2), 0);
+	return (1);
 }
 
-int key_but(int key, t_map *map)
+bool	xpm_convert(t_map *map)
 {
-	if (key == RIGHT)
-		map->hook_is += ARR_R;
-	if (key == LEFT)
-		map->hook_is += ARR_L;
-	if (key == W)
-		map->hook_is += UP;
-	if (key == S)
-		map->hook_is += DOWN;
-	if (key == A)
-		map->hook_is += LF;
-	if (key == D)
-		map->hook_is += RH;
-	if (key == ESC)
-		exit(0);
-	return (0);
-}
-
-int	key_rel(int	key, t_map *map)
-{
-	if (key == RIGHT)
-		map->hook_is -= ARR_R;
-	if (key == LEFT)
-		map->hook_is -= ARR_L;
-	if (key == W)
-		map->hook_is -= UP;
-	if (key == S)
-		map->hook_is -= DOWN;
-	if (key == A)
-		map->hook_is -= LF;
-	if (key == D)
-		map->hook_is -= RH;
-	return (0);
+	if (!fill_xpm(&map->no, map->n_textures, map->mlx.mlx))
+		return (false);
+	if (!fill_xpm(&map->so, map->s_textures, map->mlx.mlx))
+		return (false);
+	if (!fill_xpm(&map->ea, map->e_textures, map->mlx.mlx))
+		return (false);
+	if (!fill_xpm(&map->we, map->w_textures, map->mlx.mlx))
+		return (false);
+	return (true);
 }
 
 int afak(t_map *map)
 {
-	map->mlx.mlx = mlx_init();
+	map->mlx.mlx = mlx_init(map);
+	if (xpm_convert(map) == false)
+		exit (1);
 	map->mlx.win = mlx_new_window(map->mlx.mlx, WIDTH, HIGHT, "cub3D");
 	mlx_loop_hook(map->mlx.mlx, draw_map, map);
 	mlx_hook(map->mlx.win, 2, 1, key_but, map);
@@ -75,9 +58,8 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (ft_putendl_fd("Error\nnumber of argumants must be 2!", 2), 1);
 	if (parsing(&map, av[1]) == 1)
-		return (1);
-	afak(&map);
-	// printf("%f, %f\n", cos(2 * (M_PI / 3)), cos(4 * (M_PI / 3)));
-	// printf("%f        %f\n", cos(M_PI / 12) / sin(M_PI / 12), 1 / tan(M_PI / 12));
+		exit (1);
+	if (afak(&map) == 1)
+		exit (1);
 	return (0);
 }

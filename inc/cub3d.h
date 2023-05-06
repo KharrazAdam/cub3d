@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/04/28 17:34:00 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:19:11 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #define ESC 65307
 #define LEFT 65361
 #define RIGHT 65363
-#define SPEED 0.01
+#define SPEED 0.05
 
 #define ARR_R 1
 #define ARR_L 2
@@ -45,7 +45,9 @@
 
 #define HIGHT 960
 #define WIDTH 1280
-#define FOV M_PI / 3 // wich equals to 60 deg
+#define FOV M_PI / 3
+#define HORIZONTAL_INTER 1
+#define VERTICAL_INTER 0
 
 typedef struct	s_vars {
 	void	*mlx;
@@ -55,6 +57,8 @@ typedef struct	s_vars {
 typedef struct	s_ray {
 	double	x;
 	double	y;
+	double	diatance;
+	bool	inter;
 }				t_ray;
 
 typedef struct s_coordinates
@@ -64,6 +68,15 @@ typedef struct s_coordinates
 	double		ang;
 }	t_coordinates;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		w;
+	int		h;
+}				t_data;
 typedef struct s_map
 {
 	char			hook_is;
@@ -80,15 +93,12 @@ typedef struct s_map
 	t_coordinates	p_pos;
 	t_vars			mlx;
 	t_ray			ray;
+	t_data			no;
+	t_data			so;
+	t_data			ea;
+	t_data			we;
 } t_map;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 /**
  * II- parsing localisation and colours
@@ -129,13 +139,26 @@ size_t	count_att(char **attr);
 // utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
+//keys
+int red_cross(void *map);
+int key_but(int key, t_map *map);
+int	key_rel(int	key, t_map *map);
+
 // pgritd
 int		draw_map(t_map *map);
 void	draw_grid(t_data *img, int i, int j, t_map *map);
 
 // movement
-// void	move_up(t_map *map);
-// void	move_down(t_map *map);
-// void	move_left(t_map *map);
 void	move(t_map *map);
+// casting
+void	cast(t_map *map, t_data *data);
+t_ray	vertical_intersection(t_map *map, double angle);
+t_ray	hor_intersection(t_map *map, double angle);
+
+// casting utils
+double	pyth(double x, double y, double x1, double y1);
+double	fix_ang(double angle);
+
+// projection
+void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr);
 #endif

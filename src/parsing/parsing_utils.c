@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 04:38:43 by akharraz          #+#    #+#             */
-/*   Updated: 2023/03/21 05:43:44 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:51:38 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ bool	is_number(char *num)
 void	clear_attr(t_map *map)
 {
 	if (map->n_textures)
-		free(map->n_textures);	
+		free(map->n_textures);
 	if (map->s_textures)
-		free(map->s_textures);	
+		free(map->s_textures);
 	if (map->e_textures)
-		free(map->e_textures);	
+		free(map->e_textures);
 	if (map->w_textures)
 		free(map->w_textures);
 }
