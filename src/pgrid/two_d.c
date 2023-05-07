@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/07 16:17:36 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:45:57 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,24 +111,24 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
 int draw_map(t_map *map)
 {
 	t_data img;
-	int i,j;
-	j = 0;
+	// int i,j;
+	// j = 0;
 	move(map);
 	img.img = mlx_new_image(map->mlx.mlx, WIDTH, HIGHT);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
-	while (map->map[j])
-	{
-		i = 0;
-		while (map->map[j][i])
-		{
-			draw_grid(&img, i, j, map);
-			i++;
-		}
-		j++;
-	}
+	// while (map->map[j])
+	// {
+	// 	i = 0;
+	// 	while (map->map[j][i])
+	// 	{
+	// 		draw_grid(&img, i, j, map);
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
 	cast(map, &img);
-	draw_player(&img, map);
+	// draw_player(&img, map);
 	mlx_put_image_to_window(map->mlx.mlx, map->mlx.win, img.img, 0, 0);
 	mlx_destroy_image(map->mlx.mlx, img.img);
 	return (0);
