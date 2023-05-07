@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 18:50:20 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:10:51 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	fill_xpm(t_data *xpm, char *path, void *mlx)
 	xpm->img = mlx_xpm_file_to_image(mlx, path, &xpm->w, &xpm->h);
 	if (!xpm->img)
 		return (ft_putendl_fd("Error\nissue in .xpm file", 2), 0);
-	xpm->addr = mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel, &xpm->line_length, &xpm->endian);
+	xpm->addr = (unsigned int *)mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel, &xpm->line_length, &xpm->endian);
 	if (!xpm->addr)
 		return (ft_putendl_fd("Error\nissue in .xpm adrr", 2), 0);
 	return (1);

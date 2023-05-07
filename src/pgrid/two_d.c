@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 18:09:44 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:17:36 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,16 @@ void	paint(t_map *map, t_data *img, int len, int start, t_ray ray, int wid_i)
 	int	off_y;
 	int	i;
 
-	int h;
-	int w;
-	int bit_per_px;
-	int size_line;
-	int endian;
-
-	void *txty = mlx_xpm_file_to_image(map->mlx.mlx, map->n_textures, &w, &h);
-	unsigned int *txt = (unsigned int *)mlx_get_data_addr(txty, &bit_per_px, &size_line, &endian);
-
-	(void)txt;
-	(void)img;
-	(void)map;
 	if (ray.inter == HORIZONTAL_INTER)
-		off_x = (ray.x - (int)ray.x) * w;
+		off_x = (ray.x - (int)ray.x) * map->so.w;
 	else
-		off_x = (ray.y - (int)ray.y) * w;
+		off_x = (ray.y - (int)ray.y) * map->so.w;
 	i = start;
 	while (i < len && i < HIGHT)
 	{
-		off_y = ((i - start) / (double)(len - start)) * h;
+		off_y = ((i - start) / (double)(len - start)) * map->so.h;
 		if (i >= 0)
-			my_mlx_pixel_put(img, wid_i, i, txt[((h * off_y) + off_x)]);
+			my_mlx_pixel_put(img, wid_i, i, map->so.addr[((map->so.h * off_y) + off_x)]);
 		i++;
 	}
 }
@@ -123,22 +111,24 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
 int draw_map(t_map *map)
 {
 	t_data img;
+	int i,j;
+	j = 0;
 	move(map);
 	img.img = mlx_new_image(map->mlx.mlx, WIDTH, HIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
-	// while (map->map[j])
-	// {
-	// 	i = 0;
-	// 	while (map->map[j][i])
-	// 	{
-	// 		draw_grid(&img, i, j, map);
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
-	// draw_player(&img, map);
+	while (map->map[j])
+	{
+		i = 0;
+		while (map->map[j][i])
+		{
+			draw_grid(&img, i, j, map);
+			i++;
+		}
+		j++;
+	}
 	cast(map, &img);
+	draw_player(&img, map);
 	mlx_put_image_to_window(map->mlx.mlx, map->mlx.win, img.img, 0, 0);
 	mlx_destroy_image(map->mlx.mlx, img.img);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/06 18:19:11 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/07 02:23:58 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct s_coordinates
 }	t_coordinates;
 
 typedef struct	s_data {
-	void	*img;
-	char	*addr;
+	void			*img;
+	unsigned int	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
