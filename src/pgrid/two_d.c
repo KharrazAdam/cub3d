@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/07 16:45:57 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:24:07 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	paint(t_map *map, t_data *img, int len, int start, t_ray ray, int wid_i)
 	}
 }
 
-void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
+void	project(t_ray ray, int wid_i, t_data *img, t_map *map)
 {
 	double	proj_wall_h;
 	int		i;
@@ -90,9 +90,8 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
 	int		j;
 
 	j = -1;
-	ray.diatance = ray.diatance * cos(map->p_pos.ang - anglr);
-	proj_wall_h = (1 / ray.diatance) * (((WIDTH) / 2) / FS);
-	proj_wall_h = proj_wall_h * HIGHT / FS;
+	ray.diatance = ray.diatance * cos(map->p_pos.ang - ray.angle);
+	proj_wall_h = (1 * ((WIDTH / 2) / FS) / ray.diatance) * FS;
 	i = ((HIGHT) - (proj_wall_h)) / 2;
 	len = (proj_wall_h) + i;
 	while (++j < i)
@@ -102,8 +101,9 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
 	// 	my_mlx_pixel_put(img, wid_i, i, 0xFF00);
 	// 	i++;
 	// }
+	(void)map;
 	paint(map,img, len, i, ray, wid_i);
-	len--;
+	// len--;
 	while (len++ < HIGHT)
 		my_mlx_pixel_put(img, wid_i, len, map->f_col);
 }
@@ -111,24 +111,12 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr)
 int draw_map(t_map *map)
 {
 	t_data img;
-	// int i,j;
-	// j = 0;
+
 	move(map);
 	img.img = mlx_new_image(map->mlx.mlx, WIDTH, HIGHT);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
-	// while (map->map[j])
-	// {
-	// 	i = 0;
-	// 	while (map->map[j][i])
-	// 	{
-	// 		draw_grid(&img, i, j, map);
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
 	cast(map, &img);
-	// draw_player(&img, map);
 	mlx_put_image_to_window(map->mlx.mlx, map->mlx.win, img.img, 0, 0);
 	mlx_destroy_image(map->mlx.mlx, img.img);
 	return (0);

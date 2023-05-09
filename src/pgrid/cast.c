@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 00:04:01 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/07 16:45:25 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:31:38 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_ray	vertical_intersection(t_map *map, double angle)
 			ver.y -= tan(angle);
 		}
 	}
+	ver.angle = angle;
 	ver.diatance = pyth(map->p_pos.x, map->p_pos.y, ver.x, ver.y);
 	return (ver);
 }
@@ -85,6 +86,7 @@ t_ray	hor_intersection(t_map *map, double angle)
 			hor.x -= 1 / tan(angle);
 		}
 	}
+	hor.angle = angle;
 	hor.diatance = pyth(map->p_pos.x, map->p_pos.y, hor.x, hor.y);
 	return (hor);
 }
@@ -104,12 +106,13 @@ void	cast(t_map *map, t_data *data)
 		ver = vertical_intersection(map, angle);
 		hor = hor_intersection(map, angle);
 		if (ver.diatance <= hor.diatance)
-			project(ver, i, data, map, angle);
-			// DDA(map->p_pos.x * FS, map->p_pos.y * FS, ver.x * FS, ver.y * FS, data);
+			// project(ver, i, data, map);
+			show_wall(&ver, data, map, i);
 		else
-			project(hor, i, data, map, angle);
-			// DDA(map->p_pos.x * FS, map->p_pos.y * FS, hor.x * FS, hor.y * FS, data);
+			// project(hor, i, data, map);
+			show_wall(&hor, data, map ,i);
 		i++;
 		angle += FOV / WIDTH;
+		(void)data;
 	}
 }

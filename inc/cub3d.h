@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/07 02:23:58 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:41:13 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct	s_ray {
 	double	x;
 	double	y;
 	double	diatance;
+	double	angle;
+	double	proj;
 	bool	inter;
 }				t_ray;
 
@@ -92,7 +94,6 @@ typedef struct s_map
 	int				map_w;
 	t_coordinates	p_pos;
 	t_vars			mlx;
-	t_ray			ray;
 	t_data			no;
 	t_data			so;
 	t_data			ea;
@@ -160,5 +161,9 @@ double	pyth(double x, double y, double x1, double y1);
 double	fix_ang(double angle);
 
 // projection
-void	project(t_ray ray, int wid_i, t_data *img, t_map *map, double anglr);
+void	project(t_ray ray, int wid_i, t_data *img, t_map *map);
+
+// graphical show
+void	show_wall(t_ray *ray, t_data *img, t_map *map, int x);
+
 #endif

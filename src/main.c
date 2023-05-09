@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 20:10:51 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:00:41 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int afak(t_map *map)
 	if (xpm_convert(map) == false)
 		exit (1);
 	map->mlx.win = mlx_new_window(map->mlx.mlx, WIDTH, HIGHT, "cub3D");
+	if (!map->mlx.win)
+		return (ft_putendl_fd("Error\nissue in mlx_new_window", 2), 1);
 	mlx_loop_hook(map->mlx.mlx, draw_map, map);
 	mlx_hook(map->mlx.win, 2, 1, key_but, map);
 	mlx_hook(map->mlx.win, 3, 2, key_rel, map);

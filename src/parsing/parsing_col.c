@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_col.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 05:06:34 by akharraz          #+#    #+#             */
-/*   Updated: 2023/03/21 05:08:14 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:32:28 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ size_t	count_commas(char *tmp)
 {
 	size_t	i;
 	size_t	j;
-	
+
 	i = 0;
 	j = 0;
 	while (tmp[i])
 	{
 		if (tmp[i] == ',')
-			j++;		
+			j++;
 		i++;
 	}
 	return (j);

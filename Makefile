@@ -6,14 +6,14 @@
 #    By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 13:36:06 by akharraz          #+#    #+#              #
-#    Updated: 2023/05/06 13:59:45 by akharraz         ###   ########.fr        #
+#    Updated: 2023/05/08 00:13:01 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PARSING = $(addprefix parsing/, parsing.c parsing_file.c parsing_elements.c parsing_sur.c parsing_map.c parsing_utils.c parsing_col.c)
 SRC_GNL = $(addprefix get_next_line/, get_next_line.c)
 SRC_UTILS = $(addprefix utils/, utils.c)
-SRC_PGRID = $(addprefix pgrid/, two_d.c mvm.c cast.c cast_utils.c keys.c)
+SRC_PGRID = $(addprefix pgrid/, two_d.c movement.c cast.c cast_utils.c keys.c show_wall.c)
 SRC = ${SRC_PARSING} $(SRC_GNL) ${SRC_UTILS} $(SRC_PGRID) main.c
 LIBFT = ./libft/libft.a
 
