@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 04:21:43 by akharraz          #+#    #+#             */
-/*   Updated: 2023/04/26 16:06:40 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 02:18:57 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ bool	map_valid(t_map *map)
 					map->p_pos.ang = 0;
 				map->p_pos.x = j + 0.5;
 				map->p_pos.y = i + 0.5;
-				map->map[i][j] = '0';
+				// map->map[i][j] = '0';
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 13:36:06 by akharraz          #+#    #+#              #
-#    Updated: 2023/05/08 00:13:01 by akharraz         ###   ########.fr        #
+#    Updated: 2023/05/10 02:05:52 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRC_PARSING = $(addprefix parsing/, parsing.c parsing_file.c parsing_elements.c 
 SRC_GNL = $(addprefix get_next_line/, get_next_line.c)
 SRC_UTILS = $(addprefix utils/, utils.c)
 SRC_PGRID = $(addprefix pgrid/, two_d.c movement.c cast.c cast_utils.c keys.c show_wall.c)
-SRC = ${SRC_PARSING} $(SRC_GNL) ${SRC_UTILS} $(SRC_PGRID) main.c
+SRC_BONUS = $(addprefix pgrid/, mini_map.c)
+SRC = ${SRC_PARSING} $(SRC_GNL) ${SRC_UTILS} $(SRC_PGRID) $(SRC_BONUS) main.c
 LIBFT = ./libft/libft.a
 
 NAME = Cub3D

@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:19:38 by ysakine           #+#    #+#             */
-/*   Updated: 2023/03/20 02:20:01 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:56:54 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 int	search_for_nl(char *s)
 {

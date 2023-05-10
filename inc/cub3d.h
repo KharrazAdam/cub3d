@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/08 15:41:13 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 02:48:14 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int key_but(int key, t_map *map);
 int	key_rel(int	key, t_map *map);
 
 // pgritd
-int		draw_map(t_map *map);
+int		display_game(t_map *map);
 void	draw_grid(t_data *img, int i, int j, t_map *map);
 
 // movement
@@ -166,4 +166,8 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map);
 // graphical show
 void	show_wall(t_ray *ray, t_data *img, t_map *map, int x);
 
+// mini map
+void	draw_mini_map(t_data *img, t_map *map);
+#define MAP 109
+#define M 64
 #endif

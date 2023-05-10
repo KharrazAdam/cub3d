@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:10:24 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/08 18:12:54 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:57:51 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,28 @@ void	paint_wall(t_data wall, t_data *img, t_ray *ray, int x)
 
 	i = 0;
 	if (ray->inter == HORIZONTAL_INTER)
-		tex.x = (int)((ray->x - (int)ray->x) * wall.w);
+		tex.x = ((ray->x - (int)ray->x) * wall.w);
 	else
-		tex.x = (int)((ray->y - (int)ray->y) * wall.w);
-	start = ((HIGHT - ray->proj) / 2);
-	end = start + ray->proj;
+		tex.x = ((ray->y - (int)ray->y) * wall.w);
+	start = (int)((HIGHT - ray->proj) / 2);
+	end = (int)(start + ray->proj);
+	int save = start;
 	while (start < end)
 	{
+		i = start - save;
 		tex.y = (int)(i * wall.h / ray->proj);
-		my_mlx_pixel_put(img, x ,start, wall.addr[(int)((wall.h * tex.y) + tex.x)]);
+		if (start >= HIGHT)
+			return ;
+		if (start < 0)
+			start = 0;
+		my_mlx_pixel_put(img, x , start, wall.addr[(int)((wall.h * tex.y) + tex.x)]);
 		start++;
-		i += 1;
 	}
 }
 
 void	show_wall(t_ray *ray, t_data *img, t_map *map, int x)
 {
-	ray->diatance = ray->diatance * cos(ray->angle - map->p_pos.ang);
+	ray->diatance *= cos((ray->angle - map->p_pos.ang));
 	ray->proj = (1 * ((WIDTH / 2) / FS) / ray->diatance) * FS;
 	show_ceil_floor(ray->proj, img, map, x);
 	if (ray->inter && ray->angle <= M_PI)

@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 13:47:20 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 13:47:53 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 02:49:56 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ int key_but(int key, t_map *map)
 		map->hook_is += RH;
 	if (key == ESC)
 		exit(0);
+	if (key == MAP)
+	{
+		if (map->hook_is & M)
+			map->hook_is += M;
+		else
+			map->hook_is -= M;
+	}
 	return (0);
 }
 

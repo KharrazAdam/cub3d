@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 00:04:01 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/08 17:31:38 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 01:52:51 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,10 @@ void	cast(t_map *map, t_data *data)
 		ver = vertical_intersection(map, angle);
 		hor = hor_intersection(map, angle);
 		if (ver.diatance <= hor.diatance)
-			// project(ver, i, data, map);
 			show_wall(&ver, data, map, i);
 		else
-			// project(hor, i, data, map);
 			show_wall(&hor, data, map ,i);
 		i++;
 		angle += FOV / WIDTH;
-		(void)data;
 	}
 }
