@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 01:31:00 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:50:07 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ bool	xpm_convert(t_map *map)
 		return (false);
 	if (!fill_xpm(&map->we, map->w_textures, map->mlx.mlx))
 		return (false);
+	if (map->checker & BONUS)
+		fill_xpm(&map->we, "door.xpm", map->mlx.mlx);
+	map->mini_map_d = 100;
 	return (true);
 }
 

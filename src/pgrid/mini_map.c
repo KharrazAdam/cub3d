@@ -6,25 +6,26 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 01:55:16 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 15:01:23 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 23:18:06 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-#define GR 12
 void	draw_player(t_data *img, t_map *map)
 {
 	int x;
 	int y;
+	int	gr;
 
 	x = 0;
-	while (x < GR / 4)
+	gr = map->mini_map_d / map->map_h;
+	while (x < gr / 4)
 	{
 		y = 0;
-		while (y < GR / 4)
+		while (y < gr / 4)
 		{
-			my_mlx_pixel_put(img, (map->p_pos.x * GR) + y , (map->p_pos.y * GR) + x, 0xffffff);
+			my_mlx_pixel_put(img, (map->p_pos.x * gr) + y , (map->p_pos.y * gr) + x, 0xffffff);
 			y++;
 		}
 		x++;
@@ -36,17 +37,19 @@ void draw_grid(t_data *img, int i, int j, t_map *map)
 	int colour;
 	int	x;
 	int	y;
+	int	gr;
 
 	colour = 0;
 	x = 0;
 	if (map->map[j][i] == '1')
 		colour = 255;
-	while (x < GR)
+	gr = map->mini_map_d / map->map_h;
+	while (x < gr)
 	{
 		y = 0;
-		while (y < GR)
+		while (y < gr)
 		{
-			my_mlx_pixel_put(img, i * GR + x, j * GR + y, colour);
+			my_mlx_pixel_put(img, i * gr + x, j * gr + y, colour);
 			y++;
 		}
 		x++;

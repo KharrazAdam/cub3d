@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 04:38:43 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 14:51:38 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:37:56 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	is_player(char c)
 
 bool	is_valid(char c)
 {
-	return (is_player(c) || c == '1' || c == '0' || c == ' ' || c == '%');
+	return (is_player(c) || c == '1' || c == '0' || c == ' ' || c == '%' || c == 'D');
 }
 
 bool	is_number(char *num)

@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 04:21:43 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 02:18:57 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:41:54 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,25 @@ char	**creat_tmp_map(t_map *map)
 	return (ret);
 }
 
+void	rp_void(char **tmp, t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (tmp[i])
+	{
+		j = 0;
+		while (tmp[i][j])
+		{
+			if (tmp[i][j] == ' ' || tmp[i][j] == '%')
+				map->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
 bool	map_valid(t_map *map)
 {
 	int		i;
@@ -132,6 +151,8 @@ bool	map_valid(t_map *map)
 			if (is_player(tmp[i][j]) || tmp[i][j] == '0')
 				if (sur_check(i, j, tmp) == false)
 					return (clear(tmp), false);
+			if (tmp[i][j] == 'D')
+				map->checker += BONUS;
 			if (is_player(tmp[i][j]) == true)
 			{
 				if (map->p_pos.ang != -1)
@@ -146,7 +167,6 @@ bool	map_valid(t_map *map)
 					map->p_pos.ang = 0;
 				map->p_pos.x = j + 0.5;
 				map->p_pos.y = i + 0.5;
-				// map->map[i][j] = '0';
 			}
 			j++;
 		}
@@ -154,6 +174,7 @@ bool	map_valid(t_map *map)
 	}
 	if (map->p_pos.ang == -1)
 		return (ft_putendl_fd("Error\nNo player", 2), false);
+	rp_void(tmp, map);
 	return (clear(tmp), true);
 }
 

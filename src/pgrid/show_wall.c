@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:10:24 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 14:57:51 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:12:52 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	show_wall(t_ray *ray, t_data *img, t_map *map, int x)
 {
 	ray->diatance *= cos((ray->angle - map->p_pos.ang));
 	ray->proj = (1 * ((WIDTH / 2) / FS) / ray->diatance) * FS;
+	(void)map;
+	(void)ray;
+	(void)img;
+	(void)x;
 	show_ceil_floor(ray->proj, img, map, x);
 	if (ray->inter && ray->angle <= M_PI)
 		paint_wall(map->no, img, ray, x);

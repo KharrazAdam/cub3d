@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:15:52 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/06 14:52:01 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:22:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ bool	fill_text(char *key, char *str, t_map *map)
 	}
 	if (tmp)
 		free(tmp);
-	return (free(key), true);	
+	return (free(key), true);
 }
 
 bool	ft_fill(char *str, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/10 02:48:14 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:36:13 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@
 #define S 115
 #define A 97
 #define D 100
+#define O 111
 #define ESC 65307
 #define LEFT 65361
 #define RIGHT 65363
-#define SPEED 0.05
+#define SPEED 0.09
 
 #define ARR_R 1
 #define ARR_L 2
@@ -92,6 +93,7 @@ typedef struct s_map
 	char			**map;
 	int				map_h;
 	int				map_w;
+	int				mini_map_d;
 	t_coordinates	p_pos;
 	t_vars			mlx;
 	t_data			no;
@@ -170,4 +172,10 @@ void	show_wall(t_ray *ray, t_data *img, t_map *map, int x);
 void	draw_mini_map(t_data *img, t_map *map);
 #define MAP 109
 #define M 64
+#define PLUS 65451
+#define MIN 65453
+// door (close and open)
+#define O 111
+#define OPEN 128
+#define BONUS 256
 #endif

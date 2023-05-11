@@ -6,18 +6,11 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 02:50:18 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:00:35 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-
-// void draw_player(t_data *img, t_map *map)
-// {
-// 	for (int x = 0; x < 10; x++)
-// 		my_mlx_pixel_put(img, (map->p_pos.x * FS + (cos(map->p_pos.ang)) * x), map->p_pos.y * FS + (sin(map->p_pos.ang) * x), 0x2271b3);
-// }
 
 int abs(int n) { return ((n > 0) ? n : (n * (-1))); }
 
