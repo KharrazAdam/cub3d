@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 13:47:20 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/11 01:11:44 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 04:11:20 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ int key_but(int key, t_map *map)
 	}
 	if (key == O)
 	{
-		if (map->hook_is & OPEN)
-			map->hook_is += OPEN;
+		if (map->checker & BONUS)
+				map->checker += BONUS;
 		else
-			map->hook_is -= OPEN;
+			if (map->map[(int)(map->p_pos.y)][(int)(map->p_pos.x)] != 'D')
+			map->checker -= BONUS;
 	}
 	if (key == PLUS ||key == MIN)
 		mini_zoom(key, map);

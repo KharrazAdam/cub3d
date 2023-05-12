@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 01:55:16 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/10 23:18:06 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 02:47:43 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void draw_grid(t_data *img, int i, int j, t_map *map)
 	x = 0;
 	if (map->map[j][i] == '1')
 		colour = 255;
+	else if (map->map[j][i] == 'D')
+		colour = 0x35c0f;
 	gr = map->mini_map_d / map->map_h;
 	while (x < gr)
 	{

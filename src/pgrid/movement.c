@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:51:33 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/11 00:46:05 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 04:05:33 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,37 @@ static void	rotate_l_r(t_map *map, int dir)
 
 void	move(t_map *map)
 {
-	if (map->hook_is & UP && map->map[(int)((map->p_pos.y + (sin(map->p_pos.ang) * SPEED)))][(int)((map->p_pos.x + (cos(map->p_pos.ang) * SPEED)))] != '1')
-		up_down(map, 1);
-	if (map->hook_is & DOWN && map->map[(int)(map->p_pos.y - (sin(map->p_pos.ang) * SPEED))][(int)(map->p_pos.x - (cos(map->p_pos.ang) * SPEED))] != '1')
-		up_down(map, -1);
-	if (map->hook_is & LF && map->map[(int)(map->p_pos.y - (sin(map->p_pos.ang + M_PI / 2) * SPEED))][(int)(map->p_pos.x - (cos(map->p_pos.ang + M_PI / 2) * SPEED))] != '1')
-		left_right(map, -1);
-	if (map->hook_is & RH && map->map[(int)(map->p_pos.y + (sin(map->p_pos.ang + M_PI / 2) * SPEED))][(int)(map->p_pos.x + (cos(map->p_pos.ang + M_PI / 2) * SPEED))] != '1')
-		left_right(map, 1);
+	int	x;
+	int	y;
+
+	if (map->hook_is & UP)
+	{
+		x = (int)((map->p_pos.y + (sin(map->p_pos.ang) * SPEED)));
+		y = (int)((map->p_pos.x + (cos(map->p_pos.ang) * SPEED)));
+		if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+			up_down(map, 1);
+	}
+	if (map->hook_is & DOWN)
+		{
+			x = (int)(map->p_pos.y - (sin(map->p_pos.ang) * SPEED));
+			y = (int)(map->p_pos.x - (cos(map->p_pos.ang) * SPEED));
+			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+				up_down(map, -1);
+		}
+	if (map->hook_is & LF)
+		{
+			x = (int)(map->p_pos.y - (sin(map->p_pos.ang + M_PI / 2) * SPEED));
+			y = (int)(map->p_pos.x - (cos(map->p_pos.ang + M_PI / 2) * SPEED));
+			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+				left_right(map, -1);
+		}
+	if (map->hook_is & RH)
+		{
+			x = (int)(map->p_pos.y + (sin(map->p_pos.ang + M_PI / 2) * SPEED));
+			y = (int)(map->p_pos.x + (cos(map->p_pos.ang + M_PI / 2) * SPEED));
+			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+				left_right(map, 1);
+		}
 	if (map->hook_is & ARR_L)
 		rotate_l_r(map, -1);
 	if (map->hook_is & ARR_R)
