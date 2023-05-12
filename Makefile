@@ -6,7 +6,7 @@
 #    By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 13:36:06 by akharraz          #+#    #+#              #
-#    Updated: 2023/05/12 02:25:56 by akharraz         ###   ########.fr        #
+#    Updated: 2023/05/12 04:20:43 by akharraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC_PARSING = $(addprefix parsing/, parsing.c parsing_file.c parsing_elements.c 
 SRC_GNL = $(addprefix get_next_line/, get_next_line.c)
 SRC_UTILS = $(addprefix utils/, utils.c)
 SRC_PGRID = $(addprefix pgrid/, two_d.c movement.c cast.c cast_utils.c keys.c show_wall.c)
-SRC_BONUS = $(addprefix pgrid/, mini_map.c door.c)
+SRC_BONUS = $(addprefix pgrid/, mini_map.c door.c mouse.c)
 SRC = ${SRC_PARSING} $(SRC_GNL) ${SRC_UTILS} $(SRC_PGRID) $(SRC_BONUS) main.c
 LIBFT = ./libft/libft.a
 

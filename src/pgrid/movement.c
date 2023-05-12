@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:51:33 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 04:05:33 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 04:34:08 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	left_right(t_map *map, int dir)
 
 }
 
-static void	rotate_l_r(t_map *map, int dir)
+void	rotate_l_r(t_map *map, int dir)
 {
 	map->p_pos.ang += SPEED * dir;
 	map->p_pos.ang = fix_ang(map->p_pos.ang);;

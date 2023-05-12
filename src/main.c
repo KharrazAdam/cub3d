@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 01:52:20 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:10:59 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ int afak(t_map *map)
 	if (!map->mlx.win)
 		return (ft_putendl_fd("Error\nissue in mlx_new_window", 2), 1);
 	mlx_loop_hook(map->mlx.mlx, display_game, map);
-	mlx_hook(map->mlx.win, 2, 1, key_but, map);
+	mlx_hook(map->mlx.win, 2, 0, key_but, map);
 	mlx_hook(map->mlx.win, 3, 2, key_rel, map);
-	mlx_hook(map->mlx.win, 17, 0, red_cross, map);
+	mlx_hook(map->mlx.win, 17, 1L, red_cross, map);
+	mlx_mouse_hook(map->mlx.win, mousem, map);
 	mlx_loop(map->mlx.mlx);
 	return (1);
 }

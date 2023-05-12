@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/12 03:58:13 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 05:00:39 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	draw_grid(t_data *img, int i, int j, t_map *map);
 
 // movement
 void	move(t_map *map);
+void	rotate_l_r(t_map *map, int dir);
 // casting
 void	cast(t_map *map, t_data *data);
 t_ray	vertical_intersection(t_map *map, double angle);
@@ -185,4 +186,7 @@ void	draw_mini_map(t_data *img, t_map *map);
 #define OPEN 128
 bool	is_door(t_map *map, t_ray *ray);
 bool	door_open(char c, t_map *map);
+
+// mouse
+int	mousem(int key, t_map *map);
 #endif
