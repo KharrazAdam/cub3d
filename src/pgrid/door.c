@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 01:35:50 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 03:57:19 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:41:58 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ bool	is_door(t_map *map, t_ray *ray)
 
 bool	door_open(char c, t_map *map)
 {
-	return ((c == 'D' && !(map->checker & BONUS)));
+	return ((c == 'D' && (map->checker & BONUS)));
 }

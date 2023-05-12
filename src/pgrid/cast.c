@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 00:04:01 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 02:43:27 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:43:01 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	is_wall_v(t_ray ray, t_map *map, double ang)
 		ray.x--;
 	if (map->map[(int)ray.y][(int)ray.x] == '1')
 		return (true);
-	if (map->checker & BONUS && map->map[(int)ray.y][(int)ray.x] == 'D')
+	if (!(map->checker & BONUS) && map->map[(int)ray.y][(int)ray.x] == 'D')
 		return (map->checker += V_DOOR, true);
 	return (false);
 }
@@ -39,7 +39,7 @@ static bool is_wall_h(t_ray ray, t_map *map, double ang)
 		ray.y--;
 	if (map->map[(int)ray.y][(int)ray.x] == '1')
 		return (true);
-	if (map->checker & BONUS && map->map[(int)ray.y][(int)ray.x] == 'D')
+	if (!(map->checker & BONUS) && map->map[(int)ray.y][(int)ray.x] == 'D')
 		return (map->checker += H_DOOR, true);
 	return (false);
 }

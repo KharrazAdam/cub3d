@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 13:47:20 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 04:12:13 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:41:24 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,31 @@ int red_cross(void *map)
 int key_but(int key, t_map *map)
 {
 	if (key == RIGHT)
-		map->hook_is += ARR_R;
+		map->hook_is |= ARR_R;
 	if (key == LEFT)
-		map->hook_is += ARR_L;
+		map->hook_is |= ARR_L;
 	if (key == W)
-		map->hook_is += UP;
+		map->hook_is |= UP;
 	if (key == S)
-		map->hook_is += DOWN;
+		map->hook_is |= DOWN;
 	if (key == A)
-		map->hook_is += LF;
+		map->hook_is |= LF;
 	if (key == D)
-		map->hook_is += RH;
+		map->hook_is |= RH;
 	if (key == ESC)
 		exit(0);
 	// bonus begins
 	if (key == MAP)
 	{
-		if (map->hook_is & M)
-			map->hook_is += M;
+		if (!(map->hook_is & M))
+			map->hook_is |= M;
 		else
 			map->hook_is -= M;
 	}
 	if (key == O)
 	{
-		if (map->checker & BONUS)
-				map->checker += BONUS;
+		if (!(map->checker & BONUS))
+				map->checker |= BONUS;
 		else
 			if (map->map[(int)(map->p_pos.y)][(int)(map->p_pos.x)] != 'D')
 			map->checker -= BONUS;
