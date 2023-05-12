@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:51:33 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 04:34:08 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:57:55 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ void	move(t_map *map)
 	{
 		x = (int)((map->p_pos.y + (sin(map->p_pos.ang) * SPEED)));
 		y = (int)((map->p_pos.x + (cos(map->p_pos.ang) * SPEED)));
-		if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+		if (map->map[x][y] == '0')
 			up_down(map, 1);
 	}
 	if (map->hook_is & DOWN)
 		{
 			x = (int)(map->p_pos.y - (sin(map->p_pos.ang) * SPEED));
 			y = (int)(map->p_pos.x - (cos(map->p_pos.ang) * SPEED));
-			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+			if (map->map[x][y] == '0')
 				up_down(map, -1);
 		}
 	if (map->hook_is & LF)
 		{
 			x = (int)(map->p_pos.y - (sin(map->p_pos.ang + M_PI / 2) * SPEED));
 			y = (int)(map->p_pos.x - (cos(map->p_pos.ang + M_PI / 2) * SPEED));
-			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+			if (map->map[x][y] == '0')
 				left_right(map, -1);
 		}
 	if (map->hook_is & RH)
 		{
 			x = (int)(map->p_pos.y + (sin(map->p_pos.ang + M_PI / 2) * SPEED));
 			y = (int)(map->p_pos.x + (cos(map->p_pos.ang + M_PI / 2) * SPEED));
-			if (map->map[x][y] == '0' || door_open(map->map[x][y], map))
+			if (map->map[x][y] == '0')
 				left_right(map, 1);
 		}
 	if (map->hook_is & ARR_L)

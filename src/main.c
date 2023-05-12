@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:42:12 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 15:10:59 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:00:00 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ bool	xpm_convert(t_map *map)
 		return (false);
 	if (!fill_xpm(&map->we, map->w_textures, map->mlx.mlx))
 		return (false);
-	if (map->checker & BONUS)
-		if (!fill_xpm(&map->door, "door.xpm", map->mlx.mlx))
-			return (false);
-	map->mini_map_d = 100;
 	return (true);
 }
 
@@ -52,7 +48,6 @@ int afak(t_map *map)
 	mlx_hook(map->mlx.win, 2, 0, key_but, map);
 	mlx_hook(map->mlx.win, 3, 2, key_rel, map);
 	mlx_hook(map->mlx.win, 17, 1L, red_cross, map);
-	mlx_mouse_hook(map->mlx.win, mousem, map);
 	mlx_loop(map->mlx.mlx);
 	return (1);
 }

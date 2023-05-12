@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:19 by ysakine           #+#    #+#             */
-/*   Updated: 2023/05/12 05:00:39 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:01:17 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 #define S 115
 #define A 97
 #define D 100
-#define O 111
-#define MAP 109
 
 #define ESC 65307
 #define LEFT 65361
@@ -51,8 +49,6 @@
 #define FOV M_PI / 3
 #define HORIZONTAL_INTER 1
 #define VERTICAL_INTER 0
-#define H_DOOR 512
-#define V_DOOR 1024
 
 
 typedef struct	s_vars {
@@ -98,14 +94,12 @@ typedef struct s_map
 	char			**map;
 	int				map_h;
 	int				map_w;
-	int				mini_map_d;
 	t_coordinates	p_pos;
 	t_vars			mlx;
 	t_data			no;
 	t_data			so;
 	t_data			ea;
 	t_data			we;
-	t_data			door;
 } t_map;
 
 
@@ -175,18 +169,4 @@ void	project(t_ray ray, int wid_i, t_data *img, t_map *map);
 // graphical show
 void	show_wall(t_ray *ray, t_data *img, t_map *map, int x);
 
-#define BONUS 256
-
-// mini map
-void	draw_mini_map(t_data *img, t_map *map);
-#define M 64
-#define PLUS 65451
-#define MIN 65453
-// door (close and open)
-#define OPEN 128
-bool	is_door(t_map *map, t_ray *ray);
-bool	door_open(char c, t_map *map);
-
-// mouse
-int	mousem(int key, t_map *map);
 #endif

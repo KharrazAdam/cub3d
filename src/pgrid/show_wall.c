@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:10:24 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 02:27:53 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:56:58 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	show_ceil_floor(int proj, t_data *img, t_map *map, int x)
 
 void	paint_wall(t_data wall, t_data *img, t_ray *ray, int x)
 {
-	int	start;
-	int	end;
-	t_coordinates tex;
-	int i;
+	int				start;
+	int				end;
+	t_coordinates	tex;
+	int				i;
 
 	i = 0;
 	if (ray->inter == HORIZONTAL_INTER)
@@ -59,8 +59,6 @@ void	show_wall(t_ray *ray, t_data *img, t_map *map, int x)
 	ray->diatance *= cos((ray->angle - map->p_pos.ang));
 	ray->proj = (1 * ((WIDTH / 2) / FS) / ray->diatance) * FS;
 	show_ceil_floor(ray->proj, img, map, x);
-	if (is_door(map, ray))
-		return (paint_wall(map->door, img, ray, x));
 	if (ray->inter && ray->angle <= M_PI)
 		paint_wall(map->no, img, ray, x);
 	else if (ray->inter && ray->angle > M_PI)

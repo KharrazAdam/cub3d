@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 00:04:01 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 16:43:01 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:56:25 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,23 @@ void DDA(int X0, int Y0, int X1, int Y1, t_data *data);
 
 static bool	is_wall_v(t_ray ray, t_map *map, double ang)
 {
-	if (map->checker & V_DOOR)
-		map->checker -= V_DOOR;
 	if ((ray.y) <= 0 || ray.y >= map->map_h)
 		return (true);
 	if (ang > M_PI / 2 && ang < (3 * M_PI) / 2)
 		ray.x--;
 	if (map->map[(int)ray.y][(int)ray.x] == '1')
 		return (true);
-	if (!(map->checker & BONUS) && map->map[(int)ray.y][(int)ray.x] == 'D')
-		return (map->checker += V_DOOR, true);
 	return (false);
 }
 
 static bool is_wall_h(t_ray ray, t_map *map, double ang)
 {
-	if (map->checker & H_DOOR)
-		map->checker -= H_DOOR;
 	if (ray.x <= 0 || ray.x >= map->map_w)
 		return (true);
 	if (ang >= M_PI)
 		ray.y--;
 	if (map->map[(int)ray.y][(int)ray.x] == '1')
 		return (true);
-	if (!(map->checker & BONUS) && map->map[(int)ray.y][(int)ray.x] == 'D')
-		return (map->checker += H_DOOR, true);
 	return (false);
 }
 

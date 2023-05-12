@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 04:21:43 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 02:55:53 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:55:19 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,6 @@ bool	map_valid(t_map *map)
 			if (is_player(tmp[i][j]) || tmp[i][j] == '0')
 				if (sur_check(i, j, tmp) == false)
 					return (clear(tmp), false);
-			if (tmp[i][j] == 'D')
-				map->checker += BONUS;
 			if (is_player(tmp[i][j]) == true)
 			{
 				if (map->p_pos.ang != -1)

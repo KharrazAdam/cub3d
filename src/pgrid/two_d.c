@@ -6,7 +6,7 @@
 /*   By: akharraz <akharraz@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:33:46 by akharraz          #+#    #+#             */
-/*   Updated: 2023/05/12 01:52:24 by akharraz         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:57:19 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int display_game(t_map *map)
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 										&img.endian);
 	cast(map, &img);
-	if (map->hook_is & M)
-		draw_mini_map(&img, map);
 	mlx_put_image_to_window(map->mlx.mlx, map->mlx.win, img.img, 0, 0);
 	mlx_destroy_image(map->mlx.mlx, img.img);
 	return (0);
